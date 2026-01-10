@@ -2,8 +2,8 @@ package frc.robot.Subsystems;
 
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
-import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.util.PathPlannerLogging;
+// import com.pathplanner.lib.auto.AutoBuilder;
+// import com.pathplanner.lib.util.PathPlannerLogging;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -73,7 +73,7 @@ public class Swerve extends SubsystemBase {
         */
 
         // Set up custom logging to add the current path to a field 2d widget
-        PathPlannerLogging.setLogActivePathCallback((poses) -> field.getObject("path").setPoses(poses));
+        // PathPlannerLogging.setLogActivePathCallback((poses) -> field.getObject("path").setPoses(poses));
 
         SmartDashboard.putData("Field", field);
     }
@@ -285,58 +285,58 @@ public class Swerve extends SubsystemBase {
 
     }
 
-    public void limelightAprilTagAim(boolean isFieldRel) {
-        double currentGyro = gyro.getAngle();
-        double mappedAngle = 0.0f;
-        double angy = ((currentGyro % 360.0f));
-        if (currentGyro >= 0.0f) {
-            if (angy > 180) {
-                mappedAngle = angy - 360.0f;
-            } else {
-                mappedAngle = angy;
-            }
-        } else {
-            if (Math.abs(angy) > 180.0f) {
-                mappedAngle = angy + 360.0f;
-            } else {
-                mappedAngle = angy;
-            }
-        }
-        double tx = limelightAprilTable.getEntry("tx").getFloat(700);
-        // System.out.println("tx april: " + tx);
-        double tx_max = 30.0f; // detemined empirically as the limelights field of view
-        double error = 0.0f;
-        double kP = 2.0f; // should be between 0 and 1, but can be greater than 1 to go even faster
-        double kD = 0.0f; // should be between 0 and 1
-        double steering_adjust = 0.0f;
-        double acceptable_error_threshold = 10.0f / 360.0f; // 15 degrees allowable
-        if (tx != 0.0f) { // use the limelight if it recognizes anything, and use the gyro otherwise
-            error = -1.0f * (tx / tx_max) * (31.65 / 180); // scaling error between -1 and 1, with 0 being dead on, and
-                                                           // 1
-                                                           // being 180 degrees away
-        } else {
-            error = mappedAngle / 180.0f; // scaling error between -1 and 1, with 0 being dead on, and 1 being 180
-                                          // degrees
-                                          // away
-        }
-        if (limelightAprilTagLastError == 0.0f) {
-            limelightAprilTagLastError = tx;
-        }
-        double error_derivative = error - limelightAprilTagLastError;
-        limelightAprilTagLastError = tx; // setting limelightlasterror for next loop
+    // public void limelightAprilTagAim(boolean isFieldRel) {
+    //     double currentGyro = gyro.getAngle();
+    //     double mappedAngle = 0.0f;
+    //     double angy = ((currentGyro % 360.0f));
+    //     if (currentGyro >= 0.0f) {
+    //         if (angy > 180) {
+    //             mappedAngle = angy - 360.0f;
+    //         } else {
+    //             mappedAngle = angy;
+    //         }
+    //     } else {
+    //         if (Math.abs(angy) > 180.0f) {
+    //             mappedAngle = angy + 360.0f;
+    //         } else {
+    //             mappedAngle = angy;
+    //         }
+    //     }
+    //     double tx = limelightAprilTable.getEntry("tx").getFloat(700);
+    //     // System.out.println("tx april: " + tx);
+    //     double tx_max = 30.0f; // detemined empirically as the limelights field of view
+    //     double error = 0.0f;
+    //     double kP = 2.0f; // should be between 0 and 1, but can be greater than 1 to go even faster
+    //     double kD = 0.0f; // should be between 0 and 1
+    //     double steering_adjust = 0.0f;
+    //     double acceptable_error_threshold = 10.0f / 360.0f; // 15 degrees allowable
+    //     if (tx != 0.0f) { // use the limelight if it recognizes anything, and use the gyro otherwise
+    //         error = -1.0f * (tx / tx_max) * (31.65 / 180); // scaling error between -1 and 1, with 0 being dead on, and
+    //                                                        // 1
+    //                                                        // being 180 degrees away
+    //     } else {
+    //         error = mappedAngle / 180.0f; // scaling error between -1 and 1, with 0 being dead on, and 1 being 180
+    //                                       // degrees
+    //                                       // away
+    //     }
+    //     if (limelightAprilTagLastError == 0.0f) {
+    //         limelightAprilTagLastError = tx;
+    //     }
+    //     double error_derivative = error - limelightAprilTagLastError;
+    //     limelightAprilTagLastError = tx; // setting limelightlasterror for next loop
 
-        if (Math.abs(error) > acceptable_error_threshold) { // PID with a setpoint threshold
-            steering_adjust = (kP * error + kD * error_derivative);
-        }
+    //     if (Math.abs(error) > acceptable_error_threshold) { // PID with a setpoint threshold
+    //         steering_adjust = (kP * error + kD * error_derivative);
+    //     }
 
-        final double xSpeed = 0;
-        final double ySpeed = 0;
-        drive(new Translation2d(xSpeed, ySpeed).times(Constants.Swerve.maxSpeed),
-                steering_adjust * Constants.Swerve.maxAngularVelocity, isFieldRel, false);
+    //     final double xSpeed = 0;
+    //     final double ySpeed = 0;
+    //     drive(new Translation2d(xSpeed, ySpeed).times(Constants.Swerve.maxSpeed),
+    //             steering_adjust * Constants.Swerve.maxAngularVelocity, isFieldRel, false);
 
-        // System.out.println("raw angle: " + currentGyro + ", mapped angle: " +
-        // mappedAngle + ", april tag error: " + error);
-    }
+    //     // System.out.println("raw angle: " + currentGyro + ", mapped angle: " +
+    //     // mappedAngle + ", april tag error: " + error);
+    // }
 
     Rotation2d swr = new Rotation2d(45);
     Rotation2d swr2 = new Rotation2d(-45);
