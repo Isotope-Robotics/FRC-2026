@@ -4,6 +4,7 @@ import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -180,4 +181,19 @@ public class Constants {
                 }
 
         }
+
+        public static final class Shooter {
+                // TODO: REMOVE DUMMY CONSTANTS
+                public static final int shooterMotorID = 0;
+                public static final boolean shooterMotorInvert = false;
+                public static final IdleMode shooterMotorIdleMode = IdleMode.kBrake;
+        }
+
+        public static final class Intake {
+                // TODO: REMOVE DUMMY CONSTANTS
+                public static final int intakeMotorID = 0;
+                public static final boolean intakeMotorInvert = false;
+                public static final IdleMode intakeMotorIdleMode = IdleMode.kBrake;
+        }
+        
 }
