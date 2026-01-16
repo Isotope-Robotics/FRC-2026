@@ -78,6 +78,7 @@ public class SwerveModule {
     public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) {
         // Use the instance method (non-deprecated). It mutates desiredState in-place
         // and returns void, so don't assign the result.
+        //desiredState = SwerveModuleState.optimize(desiredState, getState().angle);
         desiredState.optimize(getState().angle);
         mAngleMotor.setControl(anglePosition.withPosition(desiredState.angle.getRotations()));
         setSpeed(desiredState, isOpenLoop);
