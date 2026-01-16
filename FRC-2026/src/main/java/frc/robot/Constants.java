@@ -161,6 +161,9 @@ public class Constants {
                 // For Pathplanner Config - DO NOT USE ANYWHERE EXCEPT FOR THE CONFIG IN AUTO!!
                 public static final Translation2d front_offset = new Translation2d(wheelBase / 2.0, trackWidth / 2.0);
 
+
+
+
                 public static final class AutoConstants {
                         public static final double kMaxSpeedMetersPerSecond = 3;
                         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
