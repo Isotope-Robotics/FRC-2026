@@ -56,7 +56,7 @@ public class Vision {
 
     public Pose2d getGlobalTargetPose(int id) throws NoSuchElementException{
         // TODO: CHANGE THIS. The k2026RebuiltAndyMark field is missing for some reason but it seems like a WPILib problem
-        return AprilTagFieldLayout.loadField(AprilTagFields.k2025ReefscapeAndyMark).getTagPose(id).get().toPose2d();
+        return AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltAndymark).getTagPose(id).get().toPose2d();
     }
 
     public Pose2d getGlobalTargetPose() throws NoSuchElementException{
