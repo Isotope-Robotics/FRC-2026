@@ -113,6 +113,10 @@ public class Robot extends TimedRobot {
 
     Driver1Controls();
 
+    SwerveDrive(false);
+
+    Driver2Controls();
+
     RobotTelemetry();
   }
 
@@ -157,6 +161,19 @@ public class Robot extends TimedRobot {
       swerve.zeroHeading();
       System.out.println("Gyro reset");
     }
+  }
+
+  private void Driver2Controls () {
+
+    shooter.shoot((int)(Constants.Controllers.driver2.getRightTriggerAxis() * Constants.Shooter.maxVelocity));
+
+    if (Constants.Controllers.driver2.getRightBumperButton())
+      intake.intake();
+    else if (Constants.Controllers.driver2.getLeftBumperButton())
+      intake.outtake();
+    else
+      intake.stop();
+
   }
 
   private void SwerveDrive(boolean isFieldRel) {
