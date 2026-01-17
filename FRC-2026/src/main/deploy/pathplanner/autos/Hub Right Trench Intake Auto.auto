@@ -7,31 +7,25 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Starting Line to Hub"
+            "pathName": "Hub to Right Trench"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Hub to Depot"
+            "pathName": "Right Trench to Neutral Zone"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Depot Intake #2"
+            "pathName": "Neutral Zone to Right Trench"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Depot Intake #2 Return"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Depot to Hub"
+            "pathName": "Right Trench to Hub"
           }
         }
       ]

@@ -16,11 +16,11 @@
     },
     {
       "anchor": {
-        "x": 0.75,
+        "x": 1.2,
         "y": 5.965
       },
       "prevControl": {
-        "x": 2.3982302862909908,
+        "x": 2.848230286290991,
         "y": 4.787456823965625
       },
       "nextControl": null,
@@ -45,7 +45,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Depot",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

@@ -19,6 +19,18 @@
         {
           "type": "path",
           "data": {
+            "pathName": "Depot Intake #2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Depot Intake #2 Return"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
             "pathName": "Depot to Hub"
           }
         },
