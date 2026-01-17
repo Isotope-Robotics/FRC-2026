@@ -192,7 +192,6 @@ public class Constants {
                         0,
                         0
                 );
-                public static final int targetVelocity = 3000; // Revolutions per minute
        }
 
         public static final class Intake {
