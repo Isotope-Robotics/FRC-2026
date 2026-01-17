@@ -1,11 +1,11 @@
 package frc.robot;
 
-import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -184,7 +184,13 @@ public class Constants {
                 public static final int shooterMotorID = 0;
                 public static final boolean shooterMotorInvert = false;
                 public static final IdleMode shooterMotorIdleMode = IdleMode.kBrake;
-        }
+                public static final PIDController shooterPID = new PIDController(
+                        0.1,
+                        0,
+                        0
+                );
+                public static final int targetVelocity = 3000; // Revolutions per minute
+       }
 
         public static final class Intake {
                 // TODO: REMOVE DUMMY CONSTANTS

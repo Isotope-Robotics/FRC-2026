@@ -35,6 +35,10 @@ public class Shooter extends SubsystemBase {
 
     }
 
+    public void shoot(){
+        shooterMotor.set(Constants.Shooter.shooterPID.calculate(Constants.Shooter.targetVelocity - shooterEncoder.getVelocity()));
+    }
+
     public static Shooter getInstance () {
         if (m_Instance == null)
             m_Instance = new Shooter(Constants.Shooter.shooterMotorID);
