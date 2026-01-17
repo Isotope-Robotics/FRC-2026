@@ -26,11 +26,34 @@ public class Intake extends SubsystemBase {
         intakeMotor.configure(intakeConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         
     }
+    
+    @Override
+    public void set(double value) {
+        intakeMotor.set(value);
+    }
+
+    @Override
+    public void stop() {
+        intakeMotor.set(0);
+    }
+
+    //May need to switch the signs on intake and outtake
+    @Override
+    public void intake() {
+        intakeMotor.set(-1);
+    }
+
+    @Override
+    public void outtake() {
+        intakeMotor.set(1);
+    }
 
     public static Intake getInstance () {
         if (m_Instance == null)
             m_Instance = new Intake(Constants.Intake.intakeMotorID);
         return m_Instance;
     }
+    
+
 
 }
