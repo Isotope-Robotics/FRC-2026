@@ -1,18 +1,12 @@
 package frc.robot.Subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
-import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.PersistMode;
-import com.revrobotics.ResetMode;
-
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.spark.SparkMax;
+import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkMaxConfig;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -37,6 +31,10 @@ public class Shooter extends SubsystemBase {
 
     public void shoot(){
         shooterMotor.set(Constants.Shooter.shooterPID.calculate(Constants.Shooter.targetVelocity - shooterEncoder.getVelocity()));
+    }
+
+    public void stop(){
+        shooterMotor.set(0);
     }
 
     public static Shooter getInstance () {
