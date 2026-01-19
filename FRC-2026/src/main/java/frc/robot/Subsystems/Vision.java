@@ -10,6 +10,7 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.Constants;
 
 public class Vision {
 
@@ -55,12 +56,24 @@ public class Vision {
     }
 
     public Pose2d getGlobalTargetPose(int id) throws NoSuchElementException{
-        // TODO: CHANGE THIS. The k2026RebuiltAndyMark field is missing for some reason but it seems like a WPILib problem
         return AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltAndymark).getTagPose(id).get().toPose2d();
     }
 
     public Pose2d getGlobalTargetPose() throws NoSuchElementException{
         return getGlobalTargetPose((int)aprilTagIDEntry.getInteger(-1));
+    }
+
+    public double getShooterTargetDistance (int id) {
+        Pose2d pose = getGlobalTargetPose(id);
+        double bearing = (Math.PI / 2) - Math.atan2(pose.getY(), pose.getX());
+        double yaw = pose.getRotation().getRadians();
+        double range = Math.sqrt(pose.getX() * pose.getX() + pose.getY() * pose.getY());
+        double aprilTagToLimelightBearing = bearing - yaw;
+        double shortAdjacent = range * Math.cos(aprilTagToLimelightBearing);
+        double longAdjacent = Constants.Shooter.hubWidth + shortAdjacent;
+        double opposite = range * Math.sin(aprilTagToLimelightBearing);
+        double targetDistance = Math.sqrt(opposite * opposite + longAdjacent * longAdjacent);
+        return targetDistance;
     }
 
 }
