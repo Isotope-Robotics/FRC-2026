@@ -196,6 +196,10 @@ public class Constants {
                 public static final double hubWidth = 47.0;
        }
 
+        public static final class Vision {
+                public static final String limelightName = "april";
+        }
+
         public static final class Intake {
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int intakeMotorID = 0;
