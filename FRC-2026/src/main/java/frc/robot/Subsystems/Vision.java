@@ -4,9 +4,12 @@ import java.util.NoSuchElementException;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
+import edu.wpi.first.math.Vector;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -63,17 +66,16 @@ public class Vision {
         return getGlobalTargetPose((int)aprilTagIDEntry.getInteger(-1));
     }
 
-    public double getShooterTargetDistance (int id) {
-        Pose2d pose = getGlobalTargetPose(id);
-        double bearing = (Math.PI / 2) - Math.atan2(pose.getY(), pose.getX());
-        double yaw = pose.getRotation().getRadians();
-        double range = Math.sqrt(pose.getX() * pose.getX() + pose.getY() * pose.getY());
-        double aprilTagToLimelightBearing = bearing - yaw;
-        double shortAdjacent = range * Math.cos(aprilTagToLimelightBearing);
-        double longAdjacent = Constants.Shooter.hubWidth + shortAdjacent;
-        double opposite = range * Math.sin(aprilTagToLimelightBearing);
-        double targetDistance = Math.sqrt(opposite * opposite + longAdjacent * longAdjacent);
-        return targetDistance;
+    public Translation2d getShooterTargetVector (int id) {
+        Pose2d robotPoseTargetSpace = getRobotPosTargetSpace();
+        double robotXTargetSpace = robotPoseTargetSpace.getX();
+        double robotYTargetSpace = robotPoseTargetSpace.getY();
+        double robotYHubCenter = robotYTargetSpace + Constants.Shooter.hubWidth / 2;
+        double shooterTargetDistance = Math.sqrt(robotYHubCenter * robotYHubCenter + robotXTargetSpace * robotXTargetSpace);
+        // YES THIS ATAN2 IS CORRECT. THE OPPOSITE IS THE X, THE ADJACENT IS THE Y
+        double shooterTargetAngle = Math.atan2(robotXTargetSpace, robotYHubCenter);
+        Translation2d shooterTargetVector = new Translation2d(shooterTargetDistance, new Rotation2d(shooterTargetAngle));
+        return shooterTargetVector;
     }
 
 }

@@ -193,7 +193,7 @@ public class Constants {
                         0
                 );
                 public static final int maxVelocity = 1000;
-                public static final double hubWidth = 23.75;
+                public static final double hubWidth = 47.0;
        }
 
         public static final class Intake {
