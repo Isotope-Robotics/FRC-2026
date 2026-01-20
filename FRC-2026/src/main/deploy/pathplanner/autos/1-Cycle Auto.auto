@@ -11,21 +11,21 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Run Intake"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "Hub to Depot"
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "Depot Intake #2"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Depot Intake #2 Return"
+            "name": "Stop Intake"
           }
         },
         {
