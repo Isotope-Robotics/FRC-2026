@@ -68,17 +68,14 @@ public class Vision {
         return getGlobalTargetPose((int)aprilTagIDEntry.getInteger(-1));
     }
 
-    public Translation2d getShooterTargetVector (int id) {
+    public Translation2d getShooterTargetVector () {
         Translation2d shooterTargetVector;
         if (tagVisibility.getDouble(0.0) > 0) { 
             Pose2d robotPoseTargetSpace = getRobotPosTargetSpace();
             double robotXTargetSpace = robotPoseTargetSpace.getX();
             double robotYTargetSpace = robotPoseTargetSpace.getY();
             double robotYHubCenter = robotYTargetSpace + Constants.Shooter.hubWidth / 2;
-            double shooterTargetDistance = Math.sqrt(robotYHubCenter * robotYHubCenter + robotXTargetSpace * robotXTargetSpace);
-            // YES THIS ATAN2 IS CORRECT. THE OPPOSITE IS THE X, THE ADJACENT IS THE Y
-            double shooterTargetAngle = Math.atan2(robotXTargetSpace, robotYHubCenter);
-            shooterTargetVector = new Translation2d(shooterTargetDistance, new Rotation2d(shooterTargetAngle));;
+            shooterTargetVector = new Translation2d(robotXTargetSpace, robotYHubCenter);
         }
         else {
             shooterTargetVector = new Translation2d();
