@@ -19,5 +19,4 @@ public class IntakeCommands {
             intake.stop();
         });
     }
-
 }
