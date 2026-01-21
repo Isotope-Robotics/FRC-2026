@@ -13,25 +13,19 @@
         {
           "type": "named",
           "data": {
-            "name": "Run Intake"
+            "name": "Run Shooter"
           }
         },
         {
-          "type": "path",
+          "type": "wait",
           "data": {
-            "pathName": "Hub to Depot"
+            "waitTime": 2.0
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Stop Intake"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Depot to Hub"
+            "name": "Stop Shooter"
           }
         },
         {
@@ -47,21 +41,9 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "Depot Intake #2"
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "Stop Intake"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Depot Intake #2 Return"
           }
         },
         {
