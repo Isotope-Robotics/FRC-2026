@@ -199,7 +199,13 @@ public class Constants {
                 public static final int spindexerMotorID = 0;
                 public static final boolean spindexerMotorInvert = false;
                 public static final IdleMode spindexerMotorIdleMode = IdleMode.kBrake;
-                
+                public static final int spindexerVelocity = 1;
+                public static final PIDController spindexerPID = new PIDController(
+                        0.1,
+                        0,
+                        0
+                );
+
                 public static final int maxVelocity = 1000;
                 public static final double hubWidth = 47.0;
        }
@@ -214,6 +220,6 @@ public class Constants {
                 public static final boolean intakeMotorInvert = false;
                 public static final IdleMode intakeMotorIdleMode = IdleMode.kBrake;
                 public static final int elbowMotorID = 0;
-        }       
+        }
         
 }
