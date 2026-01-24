@@ -193,13 +193,14 @@ public class Constants {
                         0
                 );
                 public static int maxVelocity = 1000;
-       }
+        }
 
         public static final class Intake {
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int intakeMotorID = 0;
                 public static final boolean intakeMotorInvert = false;
                 public static final IdleMode intakeMotorIdleMode = IdleMode.kBrake;
-        }
+                public static final int elbowMotorID = 0;
+        }       
         
 }
