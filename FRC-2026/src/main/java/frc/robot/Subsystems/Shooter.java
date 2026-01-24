@@ -54,15 +54,28 @@ public class Shooter extends SubsystemBase {
     public void shoot(int velocity){
         shooterMotor.set(Constants.Shooter.shooterPID.calculate(velocity - shooterEncoder.getVelocity()));
     }
-        
-    public void spindex(){
-        shooterMotor.set(Constants.Shooter.spindexerPID.calculate(Constants.Shooter.spindexerVelocity - spindexerEncoder.getVelocity()));
-    }
-
 
     public void stop(){
         shooterMotor.set(0);
     }
+        
+    public void startFeeder(){
+        feederMotor.set(1);
+    }
+
+    public void stopFeeder(){
+        feederMotor.set(0);
+    }
+
+    public void spindex(){
+        spindexerMotor.set(Constants.Shooter.spindexerPID.calculate(Constants.Shooter.spindexerVelocity - spindexerEncoder.getVelocity()));
+    }
+
+    public void stopSpindex(){
+        spindexerMotor.set(0);
+    }
+
+
 
     public static Shooter getInstance () {
         if (m_Instance == null)
