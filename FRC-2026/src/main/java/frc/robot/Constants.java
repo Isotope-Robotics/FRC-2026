@@ -192,6 +192,9 @@ public class Constants {
                         0,
                         0
                 );
+                public static final int feederMotorID = 0;
+                public static final boolean feederMotorInvert = false;
+                public static final IdleMode feederMotorIdleMode = IdleMode.kBrake;
                 public static final int maxVelocity = 1000;
                 public static final double hubWidth = 47.0;
        }
