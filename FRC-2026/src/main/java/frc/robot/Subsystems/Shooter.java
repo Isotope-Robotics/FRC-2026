@@ -17,11 +17,12 @@ public class Shooter extends SubsystemBase {
     public SparkMax shooterMotor;
     public RelativeEncoder shooterEncoder;
     public SparkFlex feederMotor;
-    public RelativeEncoder feederEncoder;
+    public SparkFlex spindexerMotor;
+    public RelativeEncoder spindexerEncoder;
     
     private static Shooter m_Instance = null;
 
-    private Shooter (int shooterMotorID, int feederMotorID) {
+    private Shooter (int shooterMotorID, int feederMotorID, int spindexerMotorID) {
 
         shooterMotor = new SparkMax(shooterMotorID, MotorType.kBrushless);
         shooterEncoder = shooterMotor.getEncoder();
@@ -34,13 +35,20 @@ public class Shooter extends SubsystemBase {
         shooterMotor.configure(shooterConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         
         feederMotor = new SparkFlex(feederMotorID, MotorType.kBrushless);
-        feederEncoder = feederMotor.getEncoder();
                 
         SparkFlexConfig feederConfig = new SparkFlexConfig();
         feederConfig.idleMode(Constants.Shooter.feederMotorIdleMode);
         feederConfig.inverted(Constants.Shooter.feederMotorInvert);
         feederMotor.configure(feederConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
+        spindexerMotor = new SparkFlex(spindexerMotorID, MotorType.kBrushless);
+        spindexerEncoder = spindexerMotor.getEncoder();
+        
+        SparkFlexConfig spindexerConfig = new SparkFlexConfig();
+        spindexerConfig.idleMode(Constants.Shooter.spindexerMotorIdleMode);
+        spindexerConfig.inverted(Constants.Shooter.spindexerMotorInvert);
+        spindexerMotor.configure(spindexerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        
     }
 
     public void shoot(int velocity){
@@ -53,7 +61,7 @@ public class Shooter extends SubsystemBase {
 
     public static Shooter getInstance () {
         if (m_Instance == null)
-            m_Instance = new Shooter(Constants.Shooter.shooterMotorID, Constants.Shooter.feederMotorID);
+            m_Instance = new Shooter(Constants.Shooter.shooterMotorID, Constants.Shooter.feederMotorID, Constants.Shooter.spindexerMotorID);
         return m_Instance;
     }
 
