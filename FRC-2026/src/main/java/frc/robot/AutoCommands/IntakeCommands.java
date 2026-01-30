@@ -10,6 +10,8 @@ public class IntakeCommands {
 
     public static Command runIntake () {
         return Commands.runOnce(() -> {
+            intake.extend();
+        }).andThen(() -> {
             intake.intake();
         });
     }
@@ -17,6 +19,8 @@ public class IntakeCommands {
     public static Command stopIntake () {
         return Commands.runOnce(() -> {
             intake.stop();
+        }).andThen(() -> {
+            intake.contract();
         });
     }
 }

@@ -165,14 +165,29 @@ public class Robot extends TimedRobot {
 
   private void Driver2Controls () {
 
-    shooter.shoot((int)(Constants.Controllers.driver2.getRightTriggerAxis() * Constants.Shooter.maxVelocity));
+    if (Constants.Controllers.driver2.getRightTriggerAxis() > 0) {
+      shooter.shoot(Constants.Shooter.maxVelocity);
+      shooter.startFeeder();
+      shooter.spindex();
+    }
+    else {
+      shooter.stopSpindex();
+      shooter.stopFeeder();
+      shooter.stop();
+    }
 
-    if (Constants.Controllers.driver2.getRightBumperButton())
+    if (Constants.Controllers.driver2.getRightBumperButton()) {
+      intake.extend();
       intake.intake();
-    else if (Constants.Controllers.driver2.getLeftBumperButton())
+    }
+    else if (Constants.Controllers.driver2.getLeftBumperButton()) {
+      intake.extend();
       intake.outtake();
-    else
+    }
+    else {
       intake.stop();
+      intake.contract();
+    }
 
   }
 
