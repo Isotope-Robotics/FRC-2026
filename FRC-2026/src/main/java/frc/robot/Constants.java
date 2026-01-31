@@ -221,5 +221,22 @@ public class Constants {
                 public static final IdleMode intakeMotorIdleMode = IdleMode.kBrake;
                 public static final int elbowMotorID = 0;
         }
-        
+        public static final class Climber {
+                public static final int rightClimberMotorID = 0;
+                public static final boolean rightClimberMotorInvert = false;
+                public static final IdleMode rightClimberMotorIdleMode = IdleMode.kBrake;
+                public static final int leftClimberMotorID = 0;
+                public static final boolean leftClimberMotorInvert = false;
+                public static final IdleMode leftClimberMotorIdleMode = IdleMode.kBrake;
+                public static final PIDController rightClimberPID = new PIDController(
+                                0.1,
+                                0,
+                                0
+                );
+                public static final PIDController leftClimberPID = new PIDController(
+                                0.1,
+                                0,
+                                0
+                );
+        }
 }
