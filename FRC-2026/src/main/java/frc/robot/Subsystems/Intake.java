@@ -1,6 +1,11 @@
 package frc.robot.Subsystems;
 
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
@@ -22,12 +27,19 @@ public class Intake extends SubsystemBase {
     private Intake (int intakeMotorID, int elbowMotorID) {
 
         intakeMotor = new SparkMax(intakeMotorID, MotorType.kBrushless);
-        elbowMotor = new TalonFX(elbowMotorID);
 
         SparkMaxConfig intakeConfig = new SparkMaxConfig();
         intakeConfig.idleMode(Constants.Intake.intakeMotorIdleMode);
         intakeConfig.inverted(Constants.Intake.intakeMotorInvert);
         intakeMotor.configure(intakeConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+        elbowMotor = new TalonFX(elbowMotorID);
+
+        TalonFXConfiguration elbowConfig = new TalonFXConfiguration();
+        MotorOutputConfigs elbowOutput = elbowConfig.MotorOutput;
+        elbowOutput.Inverted = InvertedValue.Clockwise_Positive;
+        elbowOutput.NeutralMode = NeutralModeValue.Brake;
+        elbowMotor.getConfigurator().apply(elbowConfig);
     }
 
     public void set(double value) {
@@ -50,11 +62,13 @@ public class Intake extends SubsystemBase {
     //Intake system elbow control
 
     public void contract() {
-        elbowMotor.setPosition(Math.PI/2);
+        PositionVoltage request = new PositionVoltage(1/4);
+        elbowMotor.setControl(request);
     }
 
     public void extend() {
-        elbowMotor.setPosition(Math.PI/6);
+        PositionVoltage request = new PositionVoltage(1/12);
+        elbowMotor.setControl(request);
     }
 
 
