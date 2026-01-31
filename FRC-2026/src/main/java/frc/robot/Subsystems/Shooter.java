@@ -3,8 +3,6 @@ package frc.robot.Subsystems;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.InvertedValue;
-import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
@@ -30,8 +28,8 @@ public class Shooter extends SubsystemBase {
 
         TalonFXConfiguration shooterConfig = new TalonFXConfiguration();
         MotorOutputConfigs shooterOutput = shooterConfig.MotorOutput;
-        shooterOutput.Inverted = InvertedValue.Clockwise_Positive;
-        shooterOutput.NeutralMode = NeutralModeValue.Coast;
+        shooterOutput.Inverted = Constants.Shooter.shooterMotorInvert;
+        shooterOutput.NeutralMode = Constants.Shooter.shooterMotorIdleMode;
         shooterMotor.getConfigurator().apply(shooterConfig);
         
         feederMotor = new SparkFlex(feederMotorID, MotorType.kBrushless);
@@ -51,8 +49,8 @@ public class Shooter extends SubsystemBase {
         
     }
 
-    public void shoot(int velocity){
-        shooterMotor.set(Constants.Shooter.shooterPID.calculate(velocity - shooterMotor.getVelocity().getValueAsDouble()));
+    public void shoot(int targetVelocity){
+        shooterMotor.set(Constants.Shooter.shooterPID.calculate(shooterMotor.getVelocity().getValueAsDouble(), targetVelocity));
     }
 
     public void stop(){
@@ -68,7 +66,7 @@ public class Shooter extends SubsystemBase {
     }
 
     public void spindex(){
-        spindexerMotor.set(Constants.Shooter.spindexerPID.calculate(Constants.Shooter.spindexerVelocity - spindexerEncoder.getVelocity()));
+        spindexerMotor.set(Constants.Shooter.spindexerPID.calculate(spindexerEncoder.getVelocity(), Constants.Shooter.spindexerVelocity));
     }
 
     public void stopSpindex(){

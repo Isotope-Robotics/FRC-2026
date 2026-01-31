@@ -185,8 +185,8 @@ public class Constants {
         public static final class Shooter {
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int shooterMotorID = 0;
-                public static final boolean shooterMotorInvert = false;
-                public static final IdleMode shooterMotorIdleMode = IdleMode.kBrake;
+                public static final InvertedValue shooterMotorInvert = InvertedValue.Clockwise_Positive;
+                public static final NeutralModeValue shooterMotorIdleMode = NeutralModeValue.Coast;
                 public static final PIDController shooterPID = new PIDController(
                         0.1,
                         0,
@@ -223,20 +223,19 @@ public class Constants {
         }
         public static final class Climber {
                 public static final int rightClimberMotorID = 0;
-                public static final boolean rightClimberMotorInvert = false;
-                public static final IdleMode rightClimberMotorIdleMode = IdleMode.kBrake;
+                public static final InvertedValue rightClimberMotorInvert = InvertedValue.Clockwise_Positive;
+                public static final NeutralModeValue rightClimberMotorIdleMode = NeutralModeValue.Brake;
                 public static final int leftClimberMotorID = 0;
-                public static final boolean leftClimberMotorInvert = false;
+                public static final boolean leftClimberMotorInvert = true;
                 public static final IdleMode leftClimberMotorIdleMode = IdleMode.kBrake;
-                public static final PIDController rightClimberPID = new PIDController(
-                                0.1,
-                                0,
-                                0
-                );
-                public static final PIDController leftClimberPID = new PIDController(
-                                0.1,
-                                0,
-                                0
-                );
+
+                //PID with solt 0, whatever that means
+                public static final double kP = 60.0;
+                public static final double kI = 0.0;
+                public static final double kD = 2.0;
+
+                // Positions (rotations)
+                public static final double CLIMB_UP_POSITION = 25.0;
+                public static final double CLIMB_DOWN_POSITION = 0.0;
         }
 }

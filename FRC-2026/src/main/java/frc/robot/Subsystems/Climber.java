@@ -16,6 +16,8 @@ public class Climber extends SubsystemBase {
 
     private static Climber m_Instance;
 
+    private final PositionVoltage positionRequest = new PositionVoltage(0);
+
     private Climber (int rightClimberMotorID, int leftClimberMotorID) {
 
         rightClimberMotor = new TalonFX(rightClimberMotorID);
@@ -23,8 +25,8 @@ public class Climber extends SubsystemBase {
 
         TalonFXConfiguration rightClimberConfig = new TalonFXConfiguration();
         MotorOutputConfigs rightClimberOutput = rightClimberConfig.MotorOutput;
-        rightClimberOutput.Inverted = InvertedValue.Clockwise_Positive;
-        rightClimberOutput.NeutralMode = NeutralModeValue.Brake;
+        rightClimberOutput.Inverted = Constants.Climber.rightClimberMotorInvert;
+        rightClimberOutput.NeutralMode = Constants.Climber.rightClimberMotorIdleMode;
         rightClimberMotor.getConfigurator().apply(rightClimberConfig);
 
         TalonFXConfiguration leftClimberConfig = new TalonFXConfiguration();
@@ -32,27 +34,27 @@ public class Climber extends SubsystemBase {
         leftClimberOutput.Inverted = InvertedValue.Clockwise_Positive;
         leftClimberOutput.NeutralMode = NeutralModeValue.Brake;
         leftClimberMotor.getConfigurator().apply(leftClimberConfig);
-    }
 
-    public void stop() {
-        rightClimberMotor.set(0);
-        leftClimberMotor.set(0);
+            TalonFXConfiguration config = new TalonFXConfiguration();
+
+            config.Slot0.kP = Constants.Climber.kP;
+            config.Slot0.kI = Constants.Climber.kI;
+            config.Slot0.kD = Constants.Climber.kD;
+
+            rightClimberMotor.getConfigurator().apply(config);
+            leftClimberMotor.getConfigurator().apply(config);
     }
-    
-    public void climb() {
-        //Create the request (set target to 10 rotations)
-        //NEED TO REFINE ROTATIONS
-        var request = new PositionVoltage(10.0);
-        rightClimberMotor.setControl(request);
-        leftClimberMotor.setControl(request);
+       
+    public void climbUp() {
+        positionRequest.Position = Constants.Climber.CLIMB_UP_POSITION;
+        rightClimberMotor.setControl(positionRequest);
+        leftClimberMotor.setControl(positionRequest);
     }
 
     public void climbDown() {
-        //Create the request (set target to -10 rotations) 
-        //NEED TO REFINE ROTATIONS
-        var request = new PositionVoltage(-10.0);
-        rightClimberMotor.setControl(request);
-        leftClimberMotor.setControl(request);
+        positionRequest.Position = Constants.Climber.CLIMB_DOWN_POSITION;
+        rightClimberMotor.setControl(positionRequest);
+        leftClimberMotor.setControl(positionRequest);
     }
 
     public static Climber getInstance () {
