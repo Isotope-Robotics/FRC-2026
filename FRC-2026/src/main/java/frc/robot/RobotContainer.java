@@ -6,6 +6,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.AutoCommands.ClimberCommands;
 import frc.robot.AutoCommands.IntakeCommands;
 import frc.robot.AutoCommands.ShooterCommands;
 
@@ -20,6 +21,8 @@ public class RobotContainer {
         NamedCommands.registerCommand("Stop Intake", IntakeCommands.stopIntake());
         NamedCommands.registerCommand("Run Shooter", ShooterCommands.runShooter());
         NamedCommands.registerCommand("Stop Shooter", ShooterCommands.stopShooter());
+        NamedCommands.registerCommand("Climb Up", ClimberCommands.climbUp());
+        NamedCommands.registerCommand("Climb Down", ClimberCommands.climbDown());
 
         autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
         SmartDashboard.putData("Auto Mode", autoChooser);
