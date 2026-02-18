@@ -17,7 +17,7 @@ package frc.robot;
 public final class Constants {
   public static final class DriveConstants {
     // Motor controller IDs for drivetrain motors
-    public static final int LEFT_LEADER_ID = 4;
+    public static final int LEFT_LEADER_ID = 21;
     public static final int LEFT_FOLLOWER_ID = 6;
     public static final int RIGHT_LEADER_ID = 16;
     public static final int RIGHT_FOLLOWER_ID = 29;
