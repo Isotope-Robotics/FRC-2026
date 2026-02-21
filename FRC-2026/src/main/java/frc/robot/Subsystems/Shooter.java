@@ -16,6 +16,7 @@ import frc.robot.Constants;
 public class Shooter extends SubsystemBase {
 
     public TalonFX shooterMotor;
+    public TalonFX shooter2Motor;
     public SparkFlex feederMotor;
     public SparkFlex spindexerMotor;
     public RelativeEncoder spindexerEncoder;
@@ -31,6 +32,14 @@ public class Shooter extends SubsystemBase {
         shooterOutput.Inverted = Constants.Shooter.shooterMotorInvert;
         shooterOutput.NeutralMode = Constants.Shooter.shooterMotorIdleMode;
         shooterMotor.getConfigurator().apply(shooterConfig);
+
+        shooter2Motor = new TalonFX(shooterMotorID);
+
+        TalonFXConfiguration shooter2Config = new TalonFXConfiguration();
+        MotorOutputConfigs shooter2Output = shooterConfig.MotorOutput;
+        shooter2Output.Inverted = Constants.Shooter.shooter2MotorInvert;
+        shooter2Output.NeutralMode = Constants.Shooter.shooter2MotorIdleMode;
+        shooter2Motor.getConfigurator().apply(shooter2Config);
         
         feederMotor = new SparkFlex(feederMotorID, MotorType.kBrushless);
                 
