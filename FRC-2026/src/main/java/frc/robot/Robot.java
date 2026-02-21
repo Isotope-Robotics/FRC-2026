@@ -32,10 +32,10 @@ public class Robot extends TimedRobot {
 
   // Subsystems
   public Swerve swerve;
-  public Intake intake;
-  public Shooter shooter;
-  public Vision vision;
-  public Climber climber;
+  // public Intake intake;
+  // public Shooter shooter;
+  // public Vision vision;
+  // public Climber climber;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -44,10 +44,10 @@ public class Robot extends TimedRobot {
    */
   public Robot() {
     swerve = Swerve.getInstance();
-    intake = Intake.getInstance();
-    shooter = Shooter.getInstance();
-    vision = new Vision("limelight-april");
-    climber = Climber.getInstance();
+    // intake = Intake.getInstance();
+    // shooter = Shooter.getInstance();
+    // vision = new Vision("limelight-april");
+    // climber = Climber.getInstance();
     robotContainer = new RobotContainer();
   }
 
@@ -171,29 +171,29 @@ public class Robot extends TimedRobot {
 
   private void Driver2Controls () {
 
-    if (Constants.Controllers.driver2.getRightTriggerAxis() > 0) {
-      shooter.shoot(Constants.Shooter.maxVelocity);
-      shooter.startFeeder();
-      shooter.spindex();
-    }
-    else {
-      shooter.stopSpindex();
-      shooter.stopFeeder();
-      shooter.stop();
-    }
+    // if (Constants.Controllers.driver2.getRightTriggerAxis() > 0) {
+    //   shooter.shoot(Constants.Shooter.maxVelocity);
+    //   shooter.startFeeder();
+    //   shooter.spindex();
+    // }
+    // else {
+    //   shooter.stopSpindex();
+    //   shooter.stopFeeder();
+    //   shooter.stop();
+    // }
 
-    if (Constants.Controllers.driver2.getRightBumperButton()) {
-      intake.extend();
-      intake.intake();
-    }
-    else if (Constants.Controllers.driver2.getLeftBumperButton()) {
-      intake.extend();
-      intake.outtake();
-    }
-    else {
-      intake.stop();
-      intake.contract();
-    }
+    // if (Constants.Controllers.driver2.getRightBumperButton()) {
+    //   intake.extend();
+    //   intake.intake();
+    // }
+    // else if (Constants.Controllers.driver2.getLeftBumperButton()) {
+    //   intake.extend();
+    //   intake.outtake();
+    // }
+    // else {
+    //   intake.stop();
+    //   intake.contract();
+    // }
 
   }
 
