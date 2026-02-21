@@ -29,9 +29,13 @@ public class Robot extends TimedRobot {
 
   // Swerve Drive Varibles
   public static final CTREConfigs ctreConfigs = new CTREConfigs();
+
+  // Subsystems
   public Swerve swerve;
   public Intake intake;
   public Shooter shooter;
+  public Vision vision;
+  public Climber climber;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -42,6 +46,8 @@ public class Robot extends TimedRobot {
     swerve = Swerve.getInstance();
     intake = Intake.getInstance();
     shooter = Shooter.getInstance();
+    vision = new Vision("limelight-april");
+    climber = Climber.getInstance();
     robotContainer = new RobotContainer();
   }
 
