@@ -28,7 +28,7 @@ public class Constants {
         public static final class Swerve {
 
                 // Pigeon CAN ID
-                public static final int pigeonId = 13;
+                public static final int pigeonId = 8;
 
                 // Module Drive Ratios
                 public static final FalconSwerveConstants chosenModule = FalconSwerveConstants.SDS.MK4i
@@ -115,9 +115,9 @@ public class Constants {
                 // Module Specific Constants
                 /* Front Right Module - Module 0 */
                 public static final class Mod0 {
-                        public static final int driveMotorID = 37;
-                        public static final int angleMotorID = 27;
-                        public static final int canCoderID = 21;
+                        public static final int driveMotorID = 0;
+                        public static final int angleMotorID = 4;
+                        public static final int canCoderID = 50;
                         public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-25.66);// 0 original offset
                         public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID,
                                         angleMotorID,
@@ -126,9 +126,9 @@ public class Constants {
 
                 /* Front Left Module - Module 1 */
                 public static final class Mod1 {
-                        public static final int driveMotorID = 38;
-                        public static final int angleMotorID = 14;
-                        public static final int canCoderID = 12;
+                        public static final int driveMotorID = 1;
+                        public static final int angleMotorID = 5;
+                        public static final int canCoderID = 51;
                         public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-78.86);// -45 original
                                                                                                     // offset
                         public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID,
@@ -138,9 +138,9 @@ public class Constants {
 
                 /* Back Left Module - Module 2 */
                 public static final class Mod2 {
-                        public static final int driveMotorID = 39;
-                        public static final int angleMotorID = 18;
-                        public static final int canCoderID = 19;
+                        public static final int driveMotorID = 2;
+                        public static final int angleMotorID = 6;
+                        public static final int canCoderID = 52;
                         public static final Rotation2d angleOffset = Rotation2d.fromDegrees(12.26);// 9 original offset
                         public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID,
                                         angleMotorID,
@@ -149,9 +149,9 @@ public class Constants {
 
                 /* Back Right Module - Module 3 */
                 public static final class Mod3 {
-                        public static final int driveMotorID = 36;
-                        public static final int angleMotorID = 10;
-                        public static final int canCoderID = 25;
+                        public static final int driveMotorID = 3;
+                        public static final int angleMotorID = 7;
+                        public static final int canCoderID = 53;
                         public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-149.86);// 34.75 original
                                                                                                      // offset
                         public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID,
@@ -184,19 +184,28 @@ public class Constants {
 
         public static final class Shooter {
                 // TODO: REMOVE DUMMY CONSTANTS
-                public static final int shooterMotorID = 0;
+                public static final int shooterMotorID = 30;
                 public static final InvertedValue shooterMotorInvert = InvertedValue.Clockwise_Positive;
                 public static final NeutralModeValue shooterMotorIdleMode = NeutralModeValue.Coast;
+
+                public static final int shooter2MotorID = 31;
+                public static final InvertedValue shooter2MotorInvert = InvertedValue.CounterClockwise_Positive;
+                public static final NeutralModeValue shooter2MotorIdleMode = NeutralModeValue.Coast;
                 public static final PIDController shooterPID = new PIDController(
                         0.1,
                         0,
                         0
                 );
-                public static final int feederMotorID = 0;
+                
+                public static final int hoodMotorID = 32;
+                public static final InvertedValue hoodMotorInvert = InvertedValue.Clockwise_Positive;
+                public static final NeutralModeValue hoodMotorIdleMode = NeutralModeValue.Coast;
+
+                public static final int feederMotorID = 21;
                 public static final boolean feederMotorInvert = false;
                 public static final IdleMode feederMotorIdleMode = IdleMode.kBrake;
 
-                public static final int spindexerMotorID = 0;
+                public static final int spindexerMotorID = 20;
                 public static final boolean spindexerMotorInvert = false;
                 public static final IdleMode spindexerMotorIdleMode = IdleMode.kBrake;
                 public static final int spindexerVelocity = 1;
@@ -216,16 +225,16 @@ public class Constants {
 
         public static final class Intake {
                 // TODO: REMOVE DUMMY CONSTANTS
-                public static final int intakeMotorID = 0;
+                public static final int intakeMotorID = 10;
                 public static final boolean intakeMotorInvert = false;
                 public static final IdleMode intakeMotorIdleMode = IdleMode.kBrake;
-                public static final int elbowMotorID = 0;
+                public static final int elbowMotorID = 11;
         }
         public static final class Climber {
-                public static final int rightClimberMotorID = 0;
+                public static final int rightClimberMotorID = 40;
                 public static final InvertedValue rightClimberMotorInvert = InvertedValue.Clockwise_Positive;
                 public static final NeutralModeValue rightClimberMotorIdleMode = NeutralModeValue.Brake;
-                public static final int leftClimberMotorID = 0;
+                public static final int leftClimberMotorID = 41;
                 public static final boolean leftClimberMotorInvert = true;
                 public static final IdleMode leftClimberMotorIdleMode = IdleMode.kBrake;
 
