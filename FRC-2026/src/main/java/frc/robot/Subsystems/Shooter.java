@@ -9,6 +9,8 @@ import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkFlexConfig;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -74,15 +76,32 @@ public class Shooter extends SubsystemBase {
         feederMotor.set(0);
     }
 
+    // Proximity sensor
+    // Initialize a DigitalInput on DIO port 0
+    DigitalInput proxSensor = new DigitalInput(0);
+
+    public int fuelCheck() {
+        //! used here since a true value for prox sensor would mean sensor is open
+        boolean fuelDetected = !proxSensor.get();
+            if (fuelDetected) {
+                SmartDashboard.putBoolean("Fuel Present", fuelDetected);
+                return 1;
+            }
+            return 0;
+    }
+
     public void spindex(){
-        spindexerMotor.set(Constants.Shooter.spindexerPID.calculate(spindexerEncoder.getVelocity(), Constants.Shooter.spindexerVelocity));
+        if (fuelCheck()!=1){
+            spindexerMotor.set(Constants.Shooter.spindexerPID.calculate(spindexerEncoder.getVelocity(), Constants.Shooter.spindexerVelocity));
+        }
+        else {
+            spindexerMotor.set(0);
+        }
     }
 
     public void stopSpindex(){
         spindexerMotor.set(0);
     }
-
-
 
     public static Shooter getInstance () {
         if (m_Instance == null)
