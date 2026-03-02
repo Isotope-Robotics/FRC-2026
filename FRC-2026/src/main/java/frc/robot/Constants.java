@@ -34,17 +34,18 @@ public final class Constants {
 
     // Current limit and nominal voltage for fuel mechanism motors.
     public static final int FEEDER_MOTOR_CURRENT_LIMIT = 60;
-    public static final int LAUNCHER_MOTOR_CURRENT_LIMIT = 60;
+    public static final int LAUNCHER_MOTOR_CURRENT_LIMIT = 100;
 
     // Voltage values for various fuel operations. These values may need to be tuned
     // based on exact robot construction.
     // See the Software Guide for tuning information
-    public static final double INTAKING_FEEDER_VOLTAGE = -12;
-    public static final double INTAKING_INTAKE_VOLTAGE = 10;
-    public static final double LAUNCHING_FEEDER_VOLTAGE = -60;//spins orange wheel and front intake array on second launch sequence event
-    public static final double LAUNCHING_LAUNCHER_VOLTAGE = -10.6;//spins back intake array on both launch squences
-    public static final double SPIN_UP_FEEDER_VOLTAGE = -6;//spins orange wheel and front intake array on second launch sequence event
-    public static final double SPIN_UP_SECONDS = 1;
+    public static final double INTAKING_FEEDER_VOLTAGE = -6;//spins orange wheel and front blue wheels during intake
+    public static final double EJECTING_EJECT_VOLTAGE = -16;//spins orange wheel and front blue wheels during eject
+    public static final double INTAKING_INTAKE_VOLTAGE = 12;//spins back green wheel during intake
+    public static final double LAUNCHING_FEEDER_VOLTAGE = -60;//spins orange/green wheel and front intake array on second launch sequence event
+    public static final double LAUNCHING_LAUNCHER_VOLTAGE = -10;//spins back intake array on both launch squences
+    public static final double SPIN_UP_FEEDER_VOLTAGE = -45;//spins orange/green wheel and front intake array on first launch sequence event
+    public static final double SPIN_UP_SECONDS = 1.5;
   }
 
   public static final class OperatorConstants {
