@@ -1,4 +1,4 @@
-package frc.robot.Subsystems;
+package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
@@ -22,6 +22,9 @@ public class Shooter extends SubsystemBase {
     public SparkFlex feederMotor;
     public SparkFlex spindexerMotor;
     public RelativeEncoder spindexerEncoder;
+    // Proximity sensor
+    // Initialize a DigitalInput on DIO port 0
+    public DigitalInput proxSensor;
     
     private static Shooter m_Instance = null;
 
@@ -57,6 +60,8 @@ public class Shooter extends SubsystemBase {
         spindexerConfig.idleMode(Constants.Shooter.spindexerMotorIdleMode);
         spindexerConfig.inverted(Constants.Shooter.spindexerMotorInvert);
         spindexerMotor.configure(spindexerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+        proxSensor = new DigitalInput(0);
         
     }
 
@@ -75,10 +80,6 @@ public class Shooter extends SubsystemBase {
     public void stopFeeder(){
         feederMotor.set(0);
     }
-
-    // Proximity sensor
-    // Initialize a DigitalInput on DIO port 0
-    DigitalInput proxSensor = new DigitalInput(0);
 
     public int fuelCheck() {
         //! used here since a true value for prox sensor would mean sensor is open

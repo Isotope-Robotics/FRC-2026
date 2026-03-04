@@ -13,7 +13,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Subsystems.*;
+import frc.robot.subsystems.*;
 import frc.robot.RobotContainer;
 
 /**
@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
   // Swerve Drive Varibles
   public static final CTREConfigs ctreConfigs = new CTREConfigs();
 
-  // Subsystems
+  // subsystems
   public Swerve swerve;
   // public Intake intake;
   // public Shooter shooter;
@@ -200,15 +200,16 @@ public class Robot extends TimedRobot {
   private void SwerveDrive(boolean isFieldRel) {
     // Controller Deadbands (Translation, Strafe, Rotation)
 
-    double xSpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(1)
+    double xSpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(0)
         * (Constants.Controllers.driver1.getRawAxis(2)),
         Constants.Controllers.stickDeadband);
-    double ySpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(0)
+    double ySpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(1)
         * (Constants.Controllers.driver1.getRawAxis(2)),
         Constants.Controllers.stickDeadband);
     double rot = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(3) // we made it unnegatived
         * (Constants.Controllers.driver1.getRawAxis(2)),
         Constants.Controllers.stickDeadband);
+    System.out.println("Joystick data:\n * X Speed: " + xSpeed + "\n * Y Speed: " + ySpeed + "\n Rotational Speed: " + rot);
 
     // Drive Function
     swerve.drive(new Translation2d(xSpeed, ySpeed).times(Constants.Swerve.maxSpeed),
