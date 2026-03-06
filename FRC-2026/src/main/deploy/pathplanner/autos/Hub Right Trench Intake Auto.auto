@@ -31,7 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right Trench to Neutral Zone"
+            "pathName": "1. Right Trench to Neutral Zone"
           }
         },
         {
@@ -43,7 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right Neutral Zone Intake"
+            "pathName": "2. Right Neutral Zone Intake"
           }
         },
         {
@@ -55,7 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Neutral Zone to Right Trench"
+            "pathName": "3. Neutral Zone to Outpost"
           }
         },
         {
