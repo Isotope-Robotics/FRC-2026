@@ -39,14 +39,14 @@ public final class Constants {
     // Voltage values for various fuel operations. These values may need to be tuned
     // based on exact robot construction.
     // See the Software Guide for tuning information
-    public static final double INTAKING_FEEDER_VOLTAGE = -6;//spins orange wheel and front blue wheels during intake
+    public static final double INTAKING_FEEDER_VOLTAGE = -8;//spins orange wheel and front blue wheels during intake
     public static final double EJECTING_EJECT_VOLTAGE = -16;//spins orange wheel and front blue wheels during eject
-    public static final double INTAKING_INTAKE_VOLTAGE = 12;//spins back green wheel during intake
+    public static final double INTAKING_INTAKE_VOLTAGE = 24;//spins back green wheel during intake
     public static final double LAUNCHING_FEEDER_VOLTAGE = -60;//spins orange/green wheel and front intake array on second launch sequence event
     public static final double LAUNCHING_LAUNCHER_VOLTAGE = -10;//spins back intake array on both launch squences
     public static final double SPIN_UP_FEEDER_VOLTAGE = -45;//spins orange/green wheel and front intake array on first launch sequence event
     public static final double SPIN_UP_SECONDS = 1.5;
-  }
+  } 
 
   public static final class OperatorConstants {
     // Port constants for driver and operator controllers. These should match the
