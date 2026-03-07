@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.8167675024489025,
-        "y": 2.99943706793824
+        "x": 7.553998260270634,
+        "y": 2.795420289404557
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.0,
-        "y": 2.5
+        "x": 4.01103955078125,
+        "y": 2.4336281467013885
       },
       "prevControl": {
-        "x": 6.544483560984919,
-        "y": 2.441310707261733
+        "x": 4.227698635562905,
+        "y": 2.558363229904053
       },
       "nextControl": {
-        "x": 3.7500664745218293,
-        "y": 2.505764793322625
+        "x": 2.5094464013660467,
+        "y": 1.569130142301455
       },
       "isLocked": false,
       "linkedName": null
@@ -36,39 +36,44 @@
         "y": 0.66
       },
       "prevControl": {
-        "x": 0.7283402257216112,
-        "y": 0.7617877267523137
+        "x": 1.6507179149236342,
+        "y": 1.315379823017513
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.0,
+      "rotationDegrees": 0.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
       "name": "Retract Intake",
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": null
     },
     {
       "name": "Extend Intake",
-      "waypointRelativePos": 0.9962013295346515,
+      "waypointRelativePos": 1.0,
       "endWaypointRelativePos": null,
       "command": null
     },
     {
       "name": "Run Intake",
-      "waypointRelativePos": 0.999999999999998,
-      "endWaypointRelativePos": 2.0,
+      "waypointRelativePos": 1.1,
+      "endWaypointRelativePos": null,
       "command": null
     },
     {
       "name": "Run Shooter",
-      "waypointRelativePos": 1.0,
+      "waypointRelativePos": 2.0,
       "endWaypointRelativePos": null,
       "command": null
     },
