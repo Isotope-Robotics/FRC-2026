@@ -25,7 +25,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "End after intaking from right"
     }
   ],
   "rotationTargets": [],
@@ -43,6 +43,30 @@
       "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": null
+    },
+    {
+      "name": "Extend Intake",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
+      "name": "Stop Intake",
+      "waypointRelativePos": 0.7542067307692306,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
+      "name": "Stop Shooter",
+      "waypointRelativePos": 1.0,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
+      "name": "Retract Intake",
+      "waypointRelativePos": 1.0,
+      "endWaypointRelativePos": null,
+      "command": null
     }
   ],
   "globalConstraints": {
@@ -58,7 +82,7 @@
     "rotation": 90.0
   },
   "reversed": false,
-  "folder": "Right Trench",
+  "folder": "RIGHT START",
   "idealStartingState": {
     "velocity": 0.0,
     "rotation": 90.0
