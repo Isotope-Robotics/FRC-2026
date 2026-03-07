@@ -12,7 +12,7 @@
         "y": 5.281495841676255
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LEFT NZ Intake Endpoint"
     },
     {
       "anchor": {
@@ -48,12 +48,12 @@
     },
     {
       "anchor": {
-        "x": 1.5418972895863048,
-        "y": 3.756818830242511
+        "x": 0.5714978601997143,
+        "y": 4.74015691868759
       },
       "prevControl": {
-        "x": 2.175411058257111,
-        "y": 3.8493115188286207
+        "x": 1.2050116288705208,
+        "y": 4.832649607273699
       },
       "nextControl": null,
       "isLocked": false,

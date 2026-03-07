@@ -12,7 +12,7 @@
         "y": 5.85074576788039
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LEFT NZ Intake Startpoint"
     },
     {
       "anchor": {
@@ -41,7 +41,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LEFT NZ Intake Endpoint"
     }
   ],
   "rotationTargets": [],

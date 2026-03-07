@@ -8,7 +8,9 @@
     "RIGHT START"
   ],
   "autoFolders": [
-    "LEFT START"
+    "LEFT START",
+    "MIDDLE START",
+    "RIGHT START"
   ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
