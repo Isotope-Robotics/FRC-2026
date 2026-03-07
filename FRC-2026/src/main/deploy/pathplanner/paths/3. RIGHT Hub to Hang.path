@@ -3,42 +3,51 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.4897869422935105,
-        "y": 0.6560111310840704
+        "x": 3.5142093471396727,
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.7592822555691852,
-        "y": 0.8872374105996856
+        "x": 2.6335958411000444,
+        "y": 4.0
       },
       "isLocked": false,
-      "linkedName": "OUTPOST"
+      "linkedName": "Hub"
     },
     {
       "anchor": {
-        "x": 3.5142093471396727,
-        "y": 4.023049719075036
+        "x": 2.25,
+        "y": 2.76
       },
       "prevControl": {
-        "x": 3.1865398610959508,
-        "y": 3.656809853619169
+        "x": 2.601154138910177,
+        "y": 2.76
+      },
+      "nextControl": {
+        "x": 1.8988458610898231,
+        "y": 2.76
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 0.5714978601997143,
+        "y": 2.76
+      },
+      "prevControl": {
+        "x": 1.4357146992395373,
+        "y": 2.76
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HUB"
+      "linkedName": "RIGHT Hang"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "Run Shooter",
-      "waypointRelativePos": 1.0,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -52,10 +61,10 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "HUB START",
+  "folder": "RIGHT",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

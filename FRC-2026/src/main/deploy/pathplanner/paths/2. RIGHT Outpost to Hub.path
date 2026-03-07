@@ -3,48 +3,37 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5142093471396727,
-        "y": 4.023049719075036
+        "x": 0.4897869422935105,
+        "y": 0.65
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.850569902548635,
-        "y": 3.2844093011218995
+        "x": 0.7592822555691852,
+        "y": 0.8812262795156153
       },
       "isLocked": false,
-      "linkedName": "HUB"
+      "linkedName": "Outpost"
     },
     {
       "anchor": {
-        "x": 0.4897869422935105,
-        "y": 0.6560111310840704
+        "x": 3.5142093471396727,
+        "y": 4.0
       },
       "prevControl": {
-        "x": 0.6570623921203731,
-        "y": 0.841803821697078
+        "x": 3.1865398610959508,
+        "y": 3.633760134544133
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "OUTPOST"
+      "linkedName": "Hub"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.75,
-      "rotationDegrees": 0.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
       "name": "Run Shooter",
-      "waypointRelativePos": 0,
-      "endWaypointRelativePos": null,
-      "command": null
-    },
-    {
-      "name": "Stop Shooter",
       "waypointRelativePos": 1.0,
       "endWaypointRelativePos": null,
       "command": null
@@ -60,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "HUB START",
+  "folder": "RIGHT",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

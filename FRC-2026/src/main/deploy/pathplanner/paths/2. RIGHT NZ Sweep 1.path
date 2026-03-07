@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5142093471396727,
-        "y": 4.023049719075036
+        "x": 7.8,
+        "y": 0.755
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.6335958411000444,
-        "y": 4.023049719075036
+        "x": 7.789992633987228,
+        "y": 1.1215667570777124
       },
       "isLocked": false,
-      "linkedName": "HUB"
+      "linkedName": "RIGHT NZ Intake Startpoint"
     },
     {
       "anchor": {
-        "x": 1.080647527193953,
-        "y": 2.600463449483775
+        "x": 7.8,
+        "y": 3.245
       },
       "prevControl": {
-        "x": 1.9448643662337763,
-        "y": 2.600463449483775
+        "x": 7.808931492789516,
+        "y": 2.992959734802719
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "HANG"
+      "linkedName": "RIGHT NZ Intake Endpoint"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -90.0
   },
   "reversed": false,
-  "folder": "HUB START",
+  "folder": "RIGHT",
   "idealStartingState": {
-    "velocity": 0,
-    "rotation": 0.0
+    "velocity": 0.0,
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }

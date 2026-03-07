@@ -76,6 +76,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "LEFT START",
+  "folder": null,
   "choreoAuto": false
 }
