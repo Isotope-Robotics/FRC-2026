@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LEFT Bump to NZ"
+            "pathName": "1. LEFT Trench to NZ"
           }
         },
         {
@@ -38,7 +38,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LEFT NZ Sweep 1"
+            "pathName": "2. LEFT NZ Sweep 1"
           }
         },
         {
@@ -69,7 +69,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LEFT NZ Return"
+            "pathName": "3. LEFT NZ Return"
           }
         }
       ]

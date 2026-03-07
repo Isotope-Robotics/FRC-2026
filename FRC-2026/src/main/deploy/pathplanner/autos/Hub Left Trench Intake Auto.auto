@@ -25,7 +25,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Hub to Left Trench"
+            "pathName": null
           }
         },
         {
@@ -61,7 +61,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Left Trench to Hub"
+            "pathName": null
           }
         },
         {
