@@ -5,15 +5,45 @@
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "Extend Intake"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "1. RIGHT Trench to NZ"
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Run Intake"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "2. RIGHT NZ Sweep 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Intake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Retract Intake"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         },
         {
