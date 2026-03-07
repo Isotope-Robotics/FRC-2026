@@ -31,7 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "1. Right Trench to Neutral Zone"
+            "pathName": "1. RIGHT RAMP to NZ"
           }
         },
         {
@@ -43,7 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "2. Right Neutral Zone Intake"
+            "pathName": "2. RIGHT NZ Intake and Shoot Back"
           }
         },
         {
@@ -55,7 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "3. Neutral Zone to Outpost"
+            "pathName": "3. RIGHT RAMP from RIGHT NZ"
           }
         },
         {
