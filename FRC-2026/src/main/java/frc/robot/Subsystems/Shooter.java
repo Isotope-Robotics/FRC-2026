@@ -65,12 +65,16 @@ public class Shooter extends SubsystemBase {
         
     }
 
-    public void shoot(int targetVelocity){
-        shooterMotor.set(Constants.Shooter.shooterPID.calculate(shooterMotor.getVelocity().getValueAsDouble(), targetVelocity));
+    public void startLaunchers(int targetVelocity){
+        shooterMotor.set(-0.565/*Constants.Shooter.shooterPID.calculate(shooterMotor.getVelocity().getValueAsDouble(), targetVelocity)*/);
+        shooter2Motor.set(-0.565/*Constants.Shooter.shooterPID.calculate(shooterMotor.getVelocity().getValueAsDouble(), targetVelocity)*/);
+
     }
 
-    public void stop(){
+    public void stopLaunchers(){
         shooterMotor.set(0);
+        shooter2Motor.set(0);
+
     }
         
     public void startFeeder(){
@@ -92,12 +96,13 @@ public class Shooter extends SubsystemBase {
     }
 
     public void spindex(){
-        if (fuelCheck()!=1){
+        spindexerMotor.set(0.3);
+        /*if (fuelCheck()!=1){
             spindexerMotor.set(Constants.Shooter.spindexerPID.calculate(spindexerEncoder.getVelocity(), Constants.Shooter.spindexerVelocity));
         }
         else {
             spindexerMotor.set(0);
-        }
+        }*/
     }
 
     public void stopSpindex(){

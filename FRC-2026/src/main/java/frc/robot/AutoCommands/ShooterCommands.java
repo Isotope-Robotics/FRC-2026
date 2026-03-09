@@ -11,7 +11,7 @@ public class ShooterCommands {
 
     public static Command runShooter () {
         return Commands.runOnce(() -> {
-            shooter.shoot(Constants.Shooter.maxVelocity);
+            shooter.startLaunchers(Constants.Shooter.maxVelocity);
         }).andThen(() -> {
             shooter.startFeeder();
         }).andThen(() -> {
@@ -25,7 +25,7 @@ public class ShooterCommands {
         }).andThen(() -> {
             shooter.stopFeeder();
         }).andThen(() -> {
-            shooter.stop();
+            shooter.stopLaunchers();
         });
     }
     

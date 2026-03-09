@@ -32,8 +32,8 @@ public class Robot extends TimedRobot {
 
   // subsystems
   public Swerve swerve;
-  // public Intake intake;
-  // public Shooter shooter;
+  public Intake intake;
+  public Shooter shooter;
   // public Vision vision;
   // public Climber climber;
 
@@ -44,8 +44,8 @@ public class Robot extends TimedRobot {
    */
   public Robot() {
     swerve = Swerve.getInstance();
-    // intake = Intake.getInstance();
-    // shooter = Shooter.getInstance();
+    intake = Intake.getInstance();
+    shooter = Shooter.getInstance();
     // vision = new Vision("limelight-april");
     // climber = Climber.getInstance();
     robotContainer = new RobotContainer();
@@ -171,29 +171,34 @@ public class Robot extends TimedRobot {
 
   private void Driver2Controls () {
 
-    // if (Constants.Controllers.driver2.getRightTriggerAxis() > 0) {
-    //   shooter.shoot(Constants.Shooter.maxVelocity);
-    //   shooter.startFeeder();
-    //   shooter.spindex();
-    // }
-    // else {
-    //   shooter.stopSpindex();
-    //   shooter.stopFeeder();
-    //   shooter.stop();
-    // }
+    if (Constants.Controllers.driver2.getLeftTriggerAxis() > 0) {
+      shooter.startFeeder();
+      shooter.spindex();
+    } else {
+      shooter.stopSpindex();
+      shooter.stopFeeder();
+    }
 
-    // if (Constants.Controllers.driver2.getRightBumperButton()) {
-    //   intake.extend();
-    //   intake.intake();
-    // }
+    if (Constants.Controllers.driver2.getRightTriggerAxis() > 0) {
+      shooter.startLaunchers(Constants.Shooter.maxVelocity);
+
+    } else {
+      shooter.stopLaunchers();
+    }
+    
+
+    if (Constants.Controllers.driver2.getRightBumperButton()) {
+    //  intake.extend();
+      intake.intake();
+    }
     // else if (Constants.Controllers.driver2.getLeftBumperButton()) {
     //   intake.extend();
     //   intake.outtake();
     // }
-    // else {
-    //   intake.stop();
+    else {
+      intake.stop();
     //   intake.contract();
-    // }
+    }
 
   }
 
