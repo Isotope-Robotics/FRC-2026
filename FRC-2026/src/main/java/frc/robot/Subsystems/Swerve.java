@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.Subsystems;
 
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
