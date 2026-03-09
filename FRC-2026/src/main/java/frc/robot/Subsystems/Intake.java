@@ -24,6 +24,13 @@ public class Intake extends SubsystemBase {
 
     private static Intake m_Instance;
 
+    public enum IntakeState {
+        ON,
+        OFF
+    }
+
+    public IntakeState state = IntakeState.OFF;
+
     private Intake (int intakeMotorID, int elbowMotorID) {
 
         intakeMotor = new SparkMax(intakeMotorID, MotorType.kBrushless);

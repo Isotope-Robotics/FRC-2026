@@ -19,6 +19,7 @@ public class Shooter extends SubsystemBase {
 
     public TalonFX shooterMotor;
     public TalonFX shooter2Motor;
+    public TalonFX hoodMotor;
     public SparkFlex feederMotor;
     public SparkFlex spindexerMotor;
     public RelativeEncoder spindexerEncoder;
@@ -27,6 +28,13 @@ public class Shooter extends SubsystemBase {
     public DigitalInput proxSensor;
     
     private static Shooter m_Instance = null;
+
+    public enum ShooterState {
+        ON,
+        OFF
+    }
+
+    public ShooterState state = ShooterState.OFF;
 
     private Shooter (int shooterMotorID, int feederMotorID, int spindexerMotorID) {
 
@@ -45,6 +53,12 @@ public class Shooter extends SubsystemBase {
         shooter2Output.Inverted = Constants.Shooter.shooter2MotorInvert;
         shooter2Output.NeutralMode = Constants.Shooter.shooter2MotorIdleMode;
         shooter2Motor.getConfigurator().apply(shooter2Config);
+
+        TalonFXConfiguration hoodConfig = new TalonFXConfiguration();
+        MotorOutputConfigs hoodOutput = hoodConfig.MotorOutput;
+        hoodOutput.Inverted = Constants.Shooter.hoodMotorInvert;
+        hoodOutput.NeutralMode = Constants.Shooter.hoodMotorIdleMode;
+        hoodMotor.getConfigurator().apply(hoodConfig);
         
         feederMotor = new SparkFlex(feederMotorID, MotorType.kBrushless);
                 
@@ -65,9 +79,11 @@ public class Shooter extends SubsystemBase {
         
     }
 
-    public void startLaunchers(int targetVelocity){
-        shooterMotor.set(-0.565/*Constants.Shooter.shooterPID.calculate(shooterMotor.getVelocity().getValueAsDouble(), targetVelocity)*/);
-        shooter2Motor.set(-0.565/*Constants.Shooter.shooterPID.calculate(shooterMotor.getVelocity().getValueAsDouble(), targetVelocity)*/);
+    public void startLaunchers(){
+        // Corner shot = 0.565
+        // Close shot = 0.300
+        shooterMotor.set(-0.450);
+        shooter2Motor.set(-0.450);
 
     }
 
@@ -96,7 +112,7 @@ public class Shooter extends SubsystemBase {
     }
 
     public void spindex(){
-        spindexerMotor.set(0.3);
+        spindexerMotor.set(0.8);
         /*if (fuelCheck()!=1){
             spindexerMotor.set(Constants.Shooter.spindexerPID.calculate(spindexerEncoder.getVelocity(), Constants.Shooter.spindexerVelocity));
         }

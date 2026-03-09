@@ -194,7 +194,7 @@ public class Constants {
                 
                 public static final int hoodMotorID = 32;
                 public static final InvertedValue hoodMotorInvert = InvertedValue.Clockwise_Positive;
-                public static final NeutralModeValue hoodMotorIdleMode = NeutralModeValue.Coast;
+                public static final NeutralModeValue hoodMotorIdleMode = NeutralModeValue.Brake;
 
                 public static final int feederMotorID = 21;
                 public static final boolean feederMotorInvert = false;

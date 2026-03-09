@@ -14,6 +14,8 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.Shooter.ShooterState;
+import frc.robot.subsystems.Intake.IntakeState;
 import frc.robot.RobotContainer;
 
 /**
@@ -29,6 +31,9 @@ public class Robot extends TimedRobot {
 
   // Swerve Drive Varibles
   public static final CTREConfigs ctreConfigs = new CTREConfigs();
+
+  public boolean rightBumperWasPressed = false;
+  public boolean leftBumperWasPressed = false;
 
   // subsystems
   public Swerve swerve;
@@ -171,34 +176,38 @@ public class Robot extends TimedRobot {
 
   private void Driver2Controls () {
 
-    if (Constants.Controllers.driver2.getLeftTriggerAxis() > 0) {
-      shooter.startFeeder();
+    if (Constants.Controllers.driver2.getRightBumperButtonPressed() && !rightBumperWasPressed) {
+      if (shooter.state == ShooterState.OFF) {
+        shooter.startLaunchers();
+        shooter.state = ShooterState.ON;
+      }
+      else {
+        shooter.stopLaunchers();
+        shooter.state = ShooterState.OFF;
+      }
+    }
+    rightBumperWasPressed = Constants.Controllers.driver2.getRightBumperButtonPressed();
+
+    if (Constants.Controllers.driver2.getRightTriggerAxis() > 0) {
       shooter.spindex();
-    } else {
+      shooter.startFeeder();
+    }
+    else {
       shooter.stopSpindex();
       shooter.stopFeeder();
     }
 
-    if (Constants.Controllers.driver2.getRightTriggerAxis() > 0) {
-      shooter.startLaunchers(Constants.Shooter.maxVelocity);
-
-    } else {
-      shooter.stopLaunchers();
+    if (Constants.Controllers.driver2.getLeftBumperButtonPressed() && !leftBumperWasPressed) {
+      if (intake.state == IntakeState.OFF) {
+        intake.intake();
+        intake.state = IntakeState.ON;
+      }
+      else {
+        intake.stop();
+        intake.state = IntakeState.OFF;
+      }
     }
-    
-
-    if (Constants.Controllers.driver2.getRightBumperButton()) {
-    //  intake.extend();
-      intake.intake();
-    }
-    // else if (Constants.Controllers.driver2.getLeftBumperButton()) {
-    //   intake.extend();
-    //   intake.outtake();
-    // }
-    else {
-      intake.stop();
-    //   intake.contract();
-    }
+    leftBumperWasPressed = Constants.Controllers.driver2.getLeftBumperButtonPressed();
 
   }
 
