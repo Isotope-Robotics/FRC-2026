@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   public Intake intake;
   public Shooter shooter;
   // public Vision vision;
-  // public Climber climber;
+  public Climber climber;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
     intake = Intake.getInstance();
     shooter = Shooter.getInstance();
     // vision = new Vision("limelight-april");
-    // climber = Climber.getInstance();
+    climber = Climber.getInstance();
     robotContainer = new RobotContainer();
   }
 
@@ -171,6 +171,12 @@ public class Robot extends TimedRobot {
     if (Constants.Controllers.driver1.getRawButton(2)) {
       swerve.zeroHeading();
       System.out.println("Gyro reset");
+    }
+    if (Constants.Controllers.driver1.getRawButton(3)) {//climber up
+      climber.climbUp();
+    }
+        if (Constants.Controllers.driver1.getRawButton(5)) {//climber down
+      climber.climbDown();
     }
   }
 
