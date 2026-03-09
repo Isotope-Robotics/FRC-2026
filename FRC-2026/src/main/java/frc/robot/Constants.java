@@ -28,7 +28,7 @@ public class Constants {
         public static final class Swerve {
 
                 // Pigeon CAN ID
-                public static final int pigeonId = 13;
+                public static final int pigeonId = 8;
 
                 // Module Drive Ratios
                 public static final FalconSwerveConstants chosenModule = FalconSwerveConstants.SDS.MK4i
@@ -77,16 +77,16 @@ public class Constants {
                 public static final double driveCurrentThresholdTime = 0.1;
                 public static final boolean driveEnableCurrentLimit = true;
 
-                // Ramp rates (unchanged)
+                // Ramp rates
                 public static final double openLoopRamp = 0.25;
                 public static final double closedLoopRamp = 0.0;
 
-                // Angle PID (steer Slot0Configs)
+                // Angle PID
                 public static final double angleKP = 100.0;
                 public static final double angleKI = 0.0;
                 public static final double angleKD = 0.5;
 
-                // Drive PID (drive Slot0Configs)
+                // Drive PID
                 public static final double driveKP = 0.1;
                 public static final double driveKI = 0.0;
                 public static final double driveKD = 0.0;
@@ -97,7 +97,7 @@ public class Constants {
                 public static final double driveKV = 0.124;
                 public static final double driveKA = 0.0;
 
-                // Max speed (kSpeedAt12Volts)
+                // Max speed
                 public static final double maxSpeed = 5.85;
 
                 public static final double driveRadius = Math.hypot(wheelBase, trackWidth) / 2.0;
@@ -112,10 +112,12 @@ public class Constants {
                 /* Front Right Module - Module 0 */
                 public static final class Mod0 {
                         public static final int driveMotorID = 3;
-                        public static final int angleMotorID = 7;
-                        public static final int canCoderID = 53;
+                        public static final int angleMotorID = 4;
+                        public static final int canCoderID = 50;
+
                         public static final Rotation2d angleOffset =
-                                Rotation2d.fromDegrees(-0.00732421875 * 360.0);
+                                Rotation2d.fromDegrees(-62.40234375);
+
                         public static final SwerveModuleConstants constants =
                                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
                 }
@@ -123,10 +125,12 @@ public class Constants {
                 /* Front Left Module - Module 1 */
                 public static final class Mod1 {
                         public static final int driveMotorID = 0;
-                        public static final int angleMotorID = 4;
-                        public static final int canCoderID = 50;
+                        public static final int angleMotorID = 5;
+                        public static final int canCoderID = 51;
+
                         public static final Rotation2d angleOffset =
-                                Rotation2d.fromDegrees(-0.446044921875 * 360.0);
+                                Rotation2d.fromDegrees(-166.2890625);
+
                         public static final SwerveModuleConstants constants =
                                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
                 }
@@ -134,10 +138,12 @@ public class Constants {
                 /* Back Left Module - Module 2 */
                 public static final class Mod2 {
                         public static final int driveMotorID = 1;
-                        public static final int angleMotorID = 5;
-                        public static final int canCoderID = 51;
+                        public static final int angleMotorID = 6;
+                        public static final int canCoderID = 52;
+
                         public static final Rotation2d angleOffset =
-                                Rotation2d.fromDegrees(-0.24365234375 * 360.0);
+                                Rotation2d.fromDegrees(122.34375);
+
                         public static final SwerveModuleConstants constants =
                                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
                 }
@@ -145,19 +151,21 @@ public class Constants {
                 /* Back Right Module - Module 3 */
                 public static final class Mod3 {
                         public static final int driveMotorID = 2;
-                        public static final int angleMotorID = 6;
-                        public static final int canCoderID = 52;
+                        public static final int angleMotorID = 7;
+                        public static final int canCoderID = 53;
+
                         public static final Rotation2d angleOffset =
-                                Rotation2d.fromDegrees(0.15673828125 * 360.0);
+                                Rotation2d.fromDegrees(-62.490234375);
+
                         public static final SwerveModuleConstants constants =
                                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
                 }
 
-                // Pathplanner offset (unchanged)
+                // Pathplanner offset
                 public static final Translation2d front_offset =
                         new Translation2d(wheelBase / 2.0, trackWidth / 2.0);
 
-                /* ================= AUTO CONSTANTS (UNCHANGED STRUCTURE) ================= */
+                /* ================= AUTO CONSTANTS ================= */
 
                 public static final class AutoConstants {
                         public static final double kMaxSpeedMetersPerSecond = 3.0;
@@ -174,9 +182,9 @@ public class Constants {
                                         kMaxAngularSpeedRadiansPerSecond,
                                         kMaxAngularSpeedRadiansPerSecondSquared);
                 }
-
+                
         }
-        
+
         public static final class Shooter {
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int shooterMotorID = 30;
