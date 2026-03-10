@@ -9,6 +9,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Translation2d;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Subsystems.*;
 import frc.robot.Subsystems.Shooter.ShooterState;
 import frc.robot.Subsystems.Intake.IntakeState;
@@ -90,7 +91,7 @@ public class Robot extends TimedRobot {
 
     // schedule the autonomous command (example)
     if (m_AutonomousCommand != null) {
-      m_AutonomousCommand.schedule();
+      CommandScheduler.getInstance().schedule(m_AutonomousCommand);
     }
   }
 
