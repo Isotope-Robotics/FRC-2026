@@ -106,7 +106,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {// Destroy Auto Commands When Switching To TeleOP
     if (m_AutonomousCommand != null) {
-      m_AutonomousCommand.cancel();
+      CommandScheduler.getInstance().cancel(m_AutonomousCommand);
     }
 
     swerve.zeroHeading();
