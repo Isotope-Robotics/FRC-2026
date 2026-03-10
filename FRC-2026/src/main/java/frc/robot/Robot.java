@@ -218,22 +218,25 @@ public class Robot extends TimedRobot {
   }
 
   private void SwerveDrive(boolean isFieldRel) {
+    double xSpeed = 0, ySpeed = 0, rot = 0;
     // Controller Deadbands (Translation, Strafe, Rotation)
     if (Constants.Controllers.driver1.getRawButton(1)) { // must hold down trigger on flight stick to drive
-      double xSpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(0)
+      xSpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(0)
           * (Constants.Controllers.driver1.getRawAxis(2)),
           Constants.Controllers.stickDeadband);
-      double ySpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(1)
+      ySpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(1)
           * (Constants.Controllers.driver1.getRawAxis(2)),
           Constants.Controllers.stickDeadband);
-      double rot = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(3) // we made it unnegatived
+      rot = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(3) // we made it unnegatived
           * (Constants.Controllers.driver1.getRawAxis(2)),
           Constants.Controllers.stickDeadband);
       System.out.println("Joystick data:\n * X Speed: " + xSpeed + "\n * Y Speed: " + ySpeed + "\n Rotational Speed: " + rot);
 
+      }
+
       // Drive Function
       swerve.drive(new Translation2d(xSpeed, ySpeed).times(Constants.Swerve.maxSpeed),
           rot * Constants.Swerve.maxAngularVelocity, isFieldRel, false);
-    }
+    
   }
 }

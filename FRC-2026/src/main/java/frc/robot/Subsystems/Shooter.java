@@ -36,7 +36,7 @@ public class Shooter extends SubsystemBase {
 
     public ShooterState state = ShooterState.OFF;
 
-    private Shooter (int shooterMotorID, int feederMotorID, int spindexerMotorID) {
+    private Shooter (int shooterMotorID, int shooter2MotorID, int hoodMotorID, int feederMotorID, int spindexerMotorID) {
 
         shooterMotor = new TalonFX(shooterMotorID);
 
@@ -53,6 +53,8 @@ public class Shooter extends SubsystemBase {
         shooter2Output.Inverted = Constants.Shooter.shooter2MotorInvert;
         shooter2Output.NeutralMode = Constants.Shooter.shooter2MotorIdleMode;
         shooter2Motor.getConfigurator().apply(shooter2Config);
+
+        hoodMotor = new TalonFX(hoodMotorID);
 
         TalonFXConfiguration hoodConfig = new TalonFXConfiguration();
         MotorOutputConfigs hoodOutput = hoodConfig.MotorOutput;
@@ -127,7 +129,7 @@ public class Shooter extends SubsystemBase {
 
     public static Shooter getInstance () {
         if (m_Instance == null)
-            m_Instance = new Shooter(Constants.Shooter.shooterMotorID, Constants.Shooter.feederMotorID, Constants.Shooter.spindexerMotorID);
+            m_Instance = new Shooter(Constants.Shooter.shooterMotorID, Constants.Shooter.shooter2MotorID, Constants.Shooter.hoodMotorID, Constants.Shooter.feederMotorID, Constants.Shooter.spindexerMotorID);
         return m_Instance;
     }
 

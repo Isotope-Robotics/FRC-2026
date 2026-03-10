@@ -10,8 +10,8 @@ import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.config.SparkFlexConfig;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -19,7 +19,7 @@ import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
 
-    public SparkMax intakeMotor; 
+    public SparkFlex intakeMotor; 
     public TalonFX elbowMotor;
 
     private static Intake m_Instance;
@@ -33,9 +33,9 @@ public class Intake extends SubsystemBase {
 
     private Intake (int intakeMotorID, int elbowMotorID) {
 
-        intakeMotor = new SparkMax(intakeMotorID, MotorType.kBrushless);
+        intakeMotor = new SparkFlex(intakeMotorID, MotorType.kBrushless);
 
-        SparkMaxConfig intakeConfig = new SparkMaxConfig();
+        SparkFlexConfig intakeConfig = new SparkFlexConfig();
         intakeConfig.idleMode(Constants.Intake.intakeMotorIdleMode);
         intakeConfig.inverted(Constants.Intake.intakeMotorInvert);
         intakeMotor.configure(intakeConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
