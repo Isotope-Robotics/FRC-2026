@@ -5,18 +5,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.*;
-import frc.robot.subsystems.Shooter.ShooterState;
-import frc.robot.subsystems.Intake.IntakeState;
-import frc.robot.RobotContainer;
+import frc.robot.Subsystems.*;
+import frc.robot.Subsystems.Shooter.ShooterState;
+import frc.robot.Subsystems.Intake.IntakeState;
 
 /**
  * The methods in this class are called automatically corresponding to each
@@ -95,7 +91,7 @@ public class Robot extends TimedRobot {
 
     // schedule the autonomous command (example)
     if (m_AutonomousCommand != null) {
-      m_AutonomousCommand.schedule();
+      CommandScheduler.getInstance().schedule(m_AutonomousCommand);
     }
   }
 
@@ -110,7 +106,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {// Destroy Auto Commands When Switching To TeleOP
     if (m_AutonomousCommand != null) {
-      m_AutonomousCommand.cancel();
+      CommandScheduler.getInstance().cancel(m_AutonomousCommand);
     }
 
     swerve.zeroHeading();
