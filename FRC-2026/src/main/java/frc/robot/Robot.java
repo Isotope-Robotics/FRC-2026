@@ -5,18 +5,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.*;
-import frc.robot.subsystems.Shooter.ShooterState;
-import frc.robot.subsystems.Intake.IntakeState;
-import frc.robot.RobotContainer;
+import frc.robot.Subsystems.*;
+import frc.robot.Subsystems.Shooter.ShooterState;
+import frc.robot.Subsystems.Intake.IntakeState;
 
 /**
  * The methods in this class are called automatically corresponding to each

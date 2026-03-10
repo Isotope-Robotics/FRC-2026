@@ -2,7 +2,7 @@ package frc.robot.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.subsystems.Intake;
+import frc.robot.Subsystems.Intake;
 
 public class IntakeCommands {
 
