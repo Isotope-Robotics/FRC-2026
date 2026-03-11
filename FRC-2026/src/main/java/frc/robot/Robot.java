@@ -211,12 +211,14 @@ public class Robot extends TimedRobot {
     }
     leftBumperWasPressed = Constants.Controllers.driver2.getLeftBumperButtonPressed();
 
+    // TODO: Add intake 
+
   }
 
   private void SwerveDrive(boolean isFieldRel) {
     double xSpeed = 0, ySpeed = 0, rot = 0;
     // Controller Deadbands (Translation, Strafe, Rotation)
-    if (Constants.Controllers.driver1.getRawButton(1)) { // must hold down trigger on flight stick to drive
+    //if (Constants.Controllers.driver1.getRawButton(1)) { // must hold down trigger on flight stick to drive
       xSpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(0)
           * (Constants.Controllers.driver1.getRawAxis(2)),
           Constants.Controllers.stickDeadband);
@@ -228,7 +230,7 @@ public class Robot extends TimedRobot {
           Constants.Controllers.stickDeadband);
       System.out.println("Joystick data:\n * X Speed: " + xSpeed + "\n * Y Speed: " + ySpeed + "\n Rotational Speed: " + rot);
 
-      }
+     // }
 
       // Drive Function
       swerve.drive(new Translation2d(xSpeed, ySpeed).times(Constants.Swerve.maxSpeed),

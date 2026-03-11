@@ -232,6 +232,7 @@ public class Constants {
                 public static final boolean intakeMotorInvert = false;
                 public static final IdleMode intakeMotorIdleMode = IdleMode.kBrake;
                 public static final int elbowMotorID = 11;
+                public static final double intakeVelocity = 1.000;
         }
         public static final class Climber {
                 public static final int rightClimberMotorID = 40;

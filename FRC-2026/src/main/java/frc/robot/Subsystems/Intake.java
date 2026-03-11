@@ -58,11 +58,11 @@ public class Intake extends SubsystemBase {
 
     //May need to switch the signs on intake and outtake
     public void intake() {
-        intakeMotor.set(-1);
+        intakeMotor.set(-Constants.Intake.intakeVelocity);
     }
 
     public void outtake() {
-        intakeMotor.set(1);
+        intakeMotor.set(Constants.Intake.intakeVelocity);
     }
 
     //Intake system elbow control
