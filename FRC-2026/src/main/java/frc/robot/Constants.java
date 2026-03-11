@@ -206,18 +206,19 @@ public class Constants {
                 public static final int feederMotorID = 21;
                 public static final boolean feederMotorInvert = false;
                 public static final IdleMode feederMotorIdleMode = IdleMode.kBrake;
+                public static final double feederVelocity = 1.000;
 
                 public static final int spindexerMotorID = 20;
                 public static final boolean spindexerMotorInvert = false;
                 public static final IdleMode spindexerMotorIdleMode = IdleMode.kBrake;
-                public static final int spindexerVelocity = 1;
+                public static final double spindexerVelocity = 0.8;
                 public static final PIDController spindexerPID = new PIDController(
                         0.1,
                         0,
                         0
                 );
 
-                public static final int maxVelocity = 3000;
+                public static final double maxPower = 0.450;
                 public static final double hubWidth = 47.0;
        }
 

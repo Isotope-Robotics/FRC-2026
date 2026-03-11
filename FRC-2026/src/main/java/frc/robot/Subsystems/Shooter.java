@@ -84,8 +84,8 @@ public class Shooter extends SubsystemBase {
     public void startLaunchers(){
         // Corner shot = 0.565
         // Close shot = 0.300
-        shooterMotor.set(-0.450);
-        shooter2Motor.set(-0.450);
+        shooterMotor.set(-Constants.Shooter.maxPower);
+        shooter2Motor.set(-Constants.Shooter.maxPower);
 
     }
 
@@ -96,7 +96,7 @@ public class Shooter extends SubsystemBase {
     }
         
     public void startFeeder(){
-        feederMotor.set(1);
+        feederMotor.set(Constants.Shooter.feederVelocity);
     }
 
     public void stopFeeder(){
@@ -114,7 +114,7 @@ public class Shooter extends SubsystemBase {
     }
 
     public void spindex(){
-        spindexerMotor.set(0.8);
+        spindexerMotor.set(Constants.Shooter.spindexerVelocity);
         /*if (fuelCheck()!=1){
             spindexerMotor.set(Constants.Shooter.spindexerPID.calculate(spindexerEncoder.getVelocity(), Constants.Shooter.spindexerVelocity));
         }
