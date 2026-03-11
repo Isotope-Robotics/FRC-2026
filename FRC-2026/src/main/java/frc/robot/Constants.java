@@ -32,10 +32,10 @@ public class Constants {
 
                 // Module Drive Ratios
                 public static final FalconSwerveConstants chosenModule = FalconSwerveConstants.SDS.MK4i
-                                .Falcon500(FalconSwerveConstants.SDS.MK4i.driveRatios.L69);
+                                .Falcon500(FalconSwerveConstants.SDS.MK4i.driveRatios.L3);
 
                 public static final FalconSwerveConstants module0 = FalconSwerveConstants.SDS.MK4i
-                                .Falcon500Inverted(FalconSwerveConstants.SDS.MK4i.driveRatios.L69);
+                                .Falcon500Inverted(FalconSwerveConstants.SDS.MK4i.driveRatios.L3);
 
                 // Drivetrain Constants
                 // Wheel positions: 11 inches from center on each axis (from TunerConstants XPos/YPos)
