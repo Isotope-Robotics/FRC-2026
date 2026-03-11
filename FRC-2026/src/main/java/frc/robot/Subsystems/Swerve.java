@@ -223,14 +223,10 @@ public class Swerve extends SubsystemBase {
         field.setRobotPose(getPose());
 
         for (SwerveModule mod : mSwerveMods) {
-            /*
-             * SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANcoder",
-             * mod.getCANCoder().getDegrees());
-             * SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle",
-             * mod.getPosition().angle.getDegrees());
-             */
-            // SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Current", );
-
+             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANcoder",
+             mod.getCANCoder().getDegrees());
+             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle",
+             mod.getPosition().angle.getDegrees());
         }
     }
 
