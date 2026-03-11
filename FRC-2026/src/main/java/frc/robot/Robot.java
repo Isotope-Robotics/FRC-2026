@@ -5,6 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+
+import com.ctre.phoenix6.SignalLogger;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Translation2d;
 
@@ -44,6 +47,7 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
   public Robot() {
+    SignalLogger.enableAutoLogging(false);
     swerve = Swerve.getInstance();
     intake = Intake.getInstance();
     shooter = Shooter.getInstance();
