@@ -6,9 +6,9 @@ import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.AutoCommands.ClimberCommands;
-import frc.robot.AutoCommands.IntakeCommands;
-import frc.robot.AutoCommands.ShooterCommands;
+import frc.robot.autocommands.ClimberCommands;
+import frc.robot.autocommands.IntakeCommands;
+import frc.robot.autocommands.ShooterCommands;
 
 //Class for Auto Commands Only
 public class RobotContainer {
