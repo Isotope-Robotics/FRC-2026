@@ -49,10 +49,10 @@ public class Robot extends TimedRobot {
   public Robot() {
     SignalLogger.enableAutoLogging(false);
     swerve = Swerve.getInstance();
-    intake = Intake.getInstance();
-    shooter = Shooter.getInstance();
+    //intake = Intake.getInstance();
+    //shooter = Shooter.getInstance();
     // vision = new Vision("limelight-april");
-    climber = Climber.getInstance();
+    // climber = Climber.getInstance();
     robotContainer = new RobotContainer();
   }
 
@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     swerve.swerveOdometry.update(swerve.getPosGyroYaw(), swerve.getModulePositions());
 
-    Driver1Controls();
+    //Driver1Controls();
 
     SwerveDrive(false);
 

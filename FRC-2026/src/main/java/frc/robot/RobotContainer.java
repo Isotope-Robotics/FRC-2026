@@ -17,12 +17,17 @@ public class RobotContainer {
     public RobotContainer(){
 
         // ADD AUTO COMMANDS HERE
+        //three run intake BE CARFUL RUNNING AUTOS
+        NamedCommands.registerCommand("Retract Intake", IntakeCommands.runIntake());
+        NamedCommands.registerCommand("Extend Intake", IntakeCommands.runIntake());
         NamedCommands.registerCommand("Run Intake", IntakeCommands.runIntake());
         NamedCommands.registerCommand("Stop Intake", IntakeCommands.stopIntake());
         NamedCommands.registerCommand("Run Shooter", ShooterCommands.runShooter());
         NamedCommands.registerCommand("Stop Shooter", ShooterCommands.stopShooter());
         NamedCommands.registerCommand("Climb Up", ClimberCommands.climbUp());
         NamedCommands.registerCommand("Climb Down", ClimberCommands.climbDown());
+        
+
 
         autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
         SmartDashboard.putData("Auto Mode", autoChooser);
