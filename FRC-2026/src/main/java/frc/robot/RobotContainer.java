@@ -24,13 +24,17 @@ public class RobotContainer {
         NamedCommands.registerCommand("Climb Up", ClimberCommands.climbUp());
         NamedCommands.registerCommand("Climb Down", ClimberCommands.climbDown());
 
-        autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
-        SmartDashboard.putData("Auto Mode", autoChooser);
+        if (AutoBuilder.isConfigured()) {
+            autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+            SmartDashboard.putData("Auto Mode", autoChooser);
+        } else {
+            System.err.println("AutoBuilder not configured — auto chooser will not be available!");
+        }
 
     }
 
     public Command getAutonomousCommand() {
-        return autoChooser.getSelected();
+        return autoChooser != null ? autoChooser.getSelected() : null;
     }
     
 }

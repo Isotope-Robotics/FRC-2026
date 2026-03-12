@@ -225,7 +225,7 @@ public class Robot extends TimedRobot {
       xSpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(0), Constants.Controllers.stickDeadband);
       ySpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(1), Constants.Controllers.stickDeadband);
       rot = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(3) /* we made it unnegatived */, Constants.Controllers.stickDeadband);
-      System.out.println("Joystick data:\n * X Speed: " + xSpeed + "\n * Y Speed: " + ySpeed + "\n Rotational Speed: " + rot);
+      // System.out.println("Joystick data:\n * X Speed: " + xSpeed + "\n * Y Speed: " + ySpeed + "\n Rotational Speed: " + rot);
     }
 
     // Drive Function
