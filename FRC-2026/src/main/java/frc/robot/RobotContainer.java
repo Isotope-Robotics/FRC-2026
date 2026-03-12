@@ -29,13 +29,17 @@ public class RobotContainer {
         
 
 
-        autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
-        SmartDashboard.putData("Auto Mode", autoChooser);
+        if (AutoBuilder.isConfigured()) {
+            autoChooser = AutoBuilder.buildAutoChooser(); // Default auto will be `Commands.none()`
+            SmartDashboard.putData("Auto Mode", autoChooser);
+        } else {
+            System.err.println("AutoBuilder not configured — auto chooser will not be available!");
+        }
 
     }
 
     public Command getAutonomousCommand() {
-        return autoChooser.getSelected();
+        return autoChooser != null ? autoChooser.getSelected() : null;
     }
     
 }
