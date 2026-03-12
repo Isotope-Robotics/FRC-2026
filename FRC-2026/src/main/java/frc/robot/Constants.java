@@ -13,14 +13,16 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Lib.Util.FalconSwerveConstants;
-import frc.robot.Lib.Util.SwerveModuleConstants;
+import frc.robot.lib.input.HIDEventHandler;
+import frc.robot.lib.util.FalconSwerveConstants;
+import frc.robot.lib.util.SwerveModuleConstants;
 
 public class Constants {
 
         public static final class Controllers {
                 public static final Joystick driver1 = new Joystick(0);
                 public static final XboxController driver2 = new XboxController(1);
+                public static final HIDEventHandler driver2Handler = new HIDEventHandler(driver2);
                 public static final double stickDeadband = 0.3;
         }
 
@@ -185,6 +187,7 @@ public class Constants {
         }    
 
         public static final class Shooter {
+                
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int shooterMotorID = 30;
                 public static final InvertedValue shooterMotorInvert = InvertedValue.CounterClockwise_Positive;
@@ -218,8 +221,12 @@ public class Constants {
                         0
                 );
 
-                public static final double maxPower = 0.450;
+                public static final double lowPower = 0.300;
+                public static final double mediumPower = 0.450;
+                public static final double highPower = 0.600;
+
                 public static final double hubWidth = 47.0;
+
        }
 
         public static final class Vision {

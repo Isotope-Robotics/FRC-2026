@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
   public Swerve swerve;
   public Intake intake;
   public Shooter shooter;
-  // public Vision vision;
+  //public Vision vision;
   //public Climber climber;
 
   /**
@@ -182,7 +182,8 @@ public class Robot extends TimedRobot {
 
   private void Driver2Controls () {
 
-    if (Constants.Controllers.driver2.getRightBumperButtonPressed() && !rightBumperWasPressed) {
+    // Right Bumper = 6
+    if (Constants.Controllers.driver2Handler.getRawButtonPressEvent(6)) {
       if (shooter.state == ShooterState.OFF) {
         shooter.startLaunchers();
         shooter.state = ShooterState.ON;
@@ -192,7 +193,6 @@ public class Robot extends TimedRobot {
         shooter.state = ShooterState.OFF;
       }
     }
-    rightBumperWasPressed = Constants.Controllers.driver2.getRightBumperButtonPressed();
 
     if (Constants.Controllers.driver2.getRightTriggerAxis() > 0) {
       shooter.spindex();
@@ -203,7 +203,8 @@ public class Robot extends TimedRobot {
       shooter.stopFeeder();
     }
 
-    if (Constants.Controllers.driver2.getLeftBumperButtonPressed() && !leftBumperWasPressed) {
+    // Left Bumper = 5
+    if (Constants.Controllers.driver2Handler.getRawButtonPressEvent(5)) {
       if (intake.state == IntakeState.OFF) {
         intake.intake();
         intake.state = IntakeState.ON;
@@ -213,9 +214,10 @@ public class Robot extends TimedRobot {
         intake.state = IntakeState.OFF;
       }
     }
-    leftBumperWasPressed = Constants.Controllers.driver2.getLeftBumperButtonPressed();
 
     // TODO: Add intake 
+
+    Constants.Controllers.driver2Handler.update();
 
   }
 
