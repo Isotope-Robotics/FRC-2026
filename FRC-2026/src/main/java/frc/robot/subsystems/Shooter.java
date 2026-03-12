@@ -84,8 +84,8 @@ public class Shooter extends SubsystemBase {
     public void startLaunchers(){
         // Corner shot = 0.565
         // Close shot = 0.300
-        shooterMotor.set(-Constants.Shooter.mediumPower);
-        shooter2Motor.set(-Constants.Shooter.mediumPower);
+        shooterMotor.set(Constants.Shooter.highPower);
+        shooter2Motor.set(Constants.Shooter.highPower);
 
     }
 

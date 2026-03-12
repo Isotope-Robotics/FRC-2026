@@ -190,11 +190,11 @@ public class Constants {
                 
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int shooterMotorID = 30;
-                public static final InvertedValue shooterMotorInvert = InvertedValue.CounterClockwise_Positive;
+                public static final InvertedValue shooterMotorInvert = InvertedValue.Clockwise_Positive;
                 public static final NeutralModeValue shooterMotorIdleMode = NeutralModeValue.Coast;
 
                 public static final int shooter2MotorID = 31;
-                public static final InvertedValue shooter2MotorInvert = InvertedValue.Clockwise_Positive;
+                public static final InvertedValue shooter2MotorInvert = InvertedValue.CounterClockwise_Positive;
                 public static final NeutralModeValue shooter2MotorIdleMode = NeutralModeValue.Coast;
                 public static final PIDController shooterPID = new PIDController(
                         0.1,
@@ -224,6 +224,8 @@ public class Constants {
                 public static final double lowPower = 0.300;
                 public static final double mediumPower = 0.450;
                 public static final double highPower = 0.600;
+                public static final double maxPower = 0.750;
+                public static final double concussionPower = 1.000;
 
                 public static final double hubWidth = 47.0;
 
@@ -236,10 +238,10 @@ public class Constants {
         public static final class Intake {
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int intakeMotorID = 10;
-                public static final boolean intakeMotorInvert = false;
+                public static final boolean intakeMotorInvert = true;
                 public static final IdleMode intakeMotorIdleMode = IdleMode.kBrake;
                 public static final int elbowMotorID = 11;
-                public static final double intakeVelocity = 1.000;
+                public static final double intakeVelocity = 0.300;
         }
         public static final class Climber {
                 public static final int rightClimberMotorID = 40;
