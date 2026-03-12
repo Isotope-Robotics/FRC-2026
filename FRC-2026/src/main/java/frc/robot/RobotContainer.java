@@ -24,8 +24,8 @@ public class RobotContainer {
         NamedCommands.registerCommand("Stop Intake", IntakeCommands.stopIntake());
         NamedCommands.registerCommand("Run Shooter", ShooterCommands.runShooter());
         NamedCommands.registerCommand("Stop Shooter", ShooterCommands.stopShooter());
-        NamedCommands.registerCommand("Climb Up", ClimberCommands.climbUp());
-        NamedCommands.registerCommand("Climb Down", ClimberCommands.climbDown());
+        //NamedCommands.registerCommand("Climb Up", ClimberCommands.climbUp());
+        //NamedCommands.registerCommand("Climb Down", ClimberCommands.climbDown());
         
 
 

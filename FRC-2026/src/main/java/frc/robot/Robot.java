@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
   public Intake intake;
   public Shooter shooter;
   // public Vision vision;
-  public Climber climber;
+  //public Climber climber;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -49,8 +49,8 @@ public class Robot extends TimedRobot {
   public Robot() {
     SignalLogger.enableAutoLogging(false);
     swerve = Swerve.getInstance();
-    //intake = Intake.getInstance();
-    //shooter = Shooter.getInstance();
+    intake = Intake.getInstance();
+    shooter = Shooter.getInstance();
     // vision = new Vision("limelight-april");
     // climber = Climber.getInstance();
     robotContainer = new RobotContainer();
@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     swerve.swerveOdometry.update(swerve.getPosGyroYaw(), swerve.getModulePositions());
 
-    //Driver1Controls();
+    Driver1Controls();
 
     SwerveDrive(false);
 
@@ -173,10 +173,10 @@ public class Robot extends TimedRobot {
       System.out.println("Gyro reset");
     }
     if (Constants.Controllers.driver1.getRawButton(3)) {//climber up
-      climber.climbUp();
+      //climber.climbUp();
     }
         if (Constants.Controllers.driver1.getRawButton(5)) {//climber down
-      climber.climbDown();
+      //climber.climbDown();
     }
   }
 
