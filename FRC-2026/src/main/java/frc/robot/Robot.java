@@ -183,7 +183,17 @@ public class Robot extends TimedRobot {
   private void Driver2Controls () {
 
     // Right Bumper = 6
-    if (Constants.Controllers.driver2Handler.getRawButtonPressEvent(6)) {
+    // if (Constants.Controllers.driver2Handler.getRawButtonPressEvent(6)) {
+    //   if (shooter.state == ShooterState.OFF) {
+    //     shooter.startLaunchers();
+    //     shooter.state = ShooterState.ON;
+    //   }
+    //   else {
+    //     shooter.stopLaunchers();
+    //     shooter.state = ShooterState.OFF;
+    //   }
+    // }
+    if (Constants.Controllers.driver2.getRightBumperButtonPressed() && !rightBumperWasPressed) {
       if (shooter.state == ShooterState.OFF) {
         shooter.startLaunchers();
         shooter.state = ShooterState.ON;
@@ -193,6 +203,7 @@ public class Robot extends TimedRobot {
         shooter.state = ShooterState.OFF;
       }
     }
+    rightBumperWasPressed = Constants.Controllers.driver2.getRightBumperButtonPressed();
 
     if (Constants.Controllers.driver2.getRightTriggerAxis() > 0) {
       shooter.spindex();
@@ -204,7 +215,17 @@ public class Robot extends TimedRobot {
     }
 
     // Left Bumper = 5
-    if (Constants.Controllers.driver2Handler.getRawButtonPressEvent(5)) {
+    // if (Constants.Controllers.driver2Handler.getRawButtonPressEvent(5)) {
+    //   if (intake.state == IntakeState.OFF) {
+    //     intake.intake();
+    //     intake.state = IntakeState.ON;
+    //   }
+    //   else {
+    //     intake.stop();
+    //     intake.state = IntakeState.OFF;
+    //   }
+    // }
+    if (Constants.Controllers.driver2.getLeftBumperButtonPressed() && !leftBumperWasPressed) {
       if (intake.state == IntakeState.OFF) {
         intake.intake();
         intake.state = IntakeState.ON;
@@ -214,10 +235,11 @@ public class Robot extends TimedRobot {
         intake.state = IntakeState.OFF;
       }
     }
+    leftBumperWasPressed = Constants.Controllers.driver2.getLeftBumperButtonPressed();
 
     // TODO: Add intake 
 
-    Constants.Controllers.driver2Handler.update();
+    // Constants.Controllers.driver2Handler.update();
 
   }
 
