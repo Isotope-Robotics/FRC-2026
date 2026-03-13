@@ -34,11 +34,13 @@ public class Robot extends TimedRobot {
   public boolean rightBumperWasPressed = false;
   public boolean leftBumperWasPressed = false;
 
+  double limelightAprilTagLastError;
+
   // subsystems
   public Swerve swerve;
   public Intake intake;
   public Shooter shooter;
-  //public Vision vision;
+  public Vision vision;
   //public Climber climber;
 
   /**
@@ -51,7 +53,7 @@ public class Robot extends TimedRobot {
     swerve = Swerve.getInstance();
     intake = Intake.getInstance();
     shooter = Shooter.getInstance();
-    // vision = new Vision("limelight-april");
+    vision = new Vision("limelight-april");
     // climber = Climber.getInstance();
     robotContainer = new RobotContainer();
   }
@@ -113,6 +115,12 @@ public class Robot extends TimedRobot {
       CommandScheduler.getInstance().cancel(m_AutonomousCommand);
     }
 
+    shooter.stopLaunchers();
+    shooter.state = ShooterState.OFF;
+
+    intake.stop();
+    intake.state = IntakeState.OFF;
+
     swerve.zeroHeading();
     RobotTelemetry();
   }
@@ -121,6 +129,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     swerve.swerveOdometry.update(swerve.getPosGyroYaw(), swerve.getModulePositions());
+
+    System.out.println(vision.getAprilTagVector());
+    System.out.println(vision.getShooterTargetVector());
 
     Driver1Controls();
 
@@ -172,6 +183,12 @@ public class Robot extends TimedRobot {
       swerve.zeroHeading();
       System.out.println("Gyro reset");
     }
+    if (Constants.Controllers.driver1.getRawButton(4)) {
+      
+    } else {
+      limelightAprilTagLastError = 0;
+      // System.out.println("limelight button not pressed, setting last tx to 0");
+    }
     if (Constants.Controllers.driver1.getRawButton(3)) {//climber up
       //climber.climbUp();
     }
@@ -213,6 +230,16 @@ public class Robot extends TimedRobot {
       shooter.stopSpindex();
       shooter.stopFeeder();
     }
+    
+    if (Constants.Controllers.driver2.getPOV() == 270) {
+      shooter.turretClockwise();
+    }
+    else if (Constants.Controllers.driver2.getPOV() == 90) {
+      shooter.turretCounterclockwise();
+    }
+    else {
+     shooter.turretStop();
+    }
 
     // Left Bumper = 5
     // if (Constants.Controllers.driver2Handler.getRawButtonPressEvent(5)) {
@@ -242,6 +269,60 @@ public class Robot extends TimedRobot {
     // Constants.Controllers.driver2Handler.update();
 
   }
+
+  private void limelightAprilTagAim (boolean isFieldRel) {
+    double currentGyro = swerve.gyro.getRotation2d().getDegrees();
+    double mappedAngle = 0.0f;
+    double angy = ((currentGyro % 360.0f));
+    if (currentGyro >= 0.0f) {
+      if (angy > 180) {
+        mappedAngle = angy - 360.0f;
+      } else {
+        mappedAngle = angy;
+      }
+    } else {
+      if (Math.abs(angy) > 180.0f) {
+        mappedAngle = angy + 360.0f;
+      } else {
+        mappedAngle = angy;
+      }
+    }
+    double tx = vision.aprilTagX.getFloat(700);
+    // System.out.println("tx april: " + tx);
+    double tx_max = 30.0f; // detemined empirically as the limelights field of view
+    double error = 0.0f;
+    double kP = 2.0f; // should be between 0 and 1, but can be greater than 1 to go even faster
+    double kD = 0.0f; // should be between 0 and 1
+    double steering_adjust = 0.0f;
+    double acceptable_error_threshold = 10.0f / 360.0f; // 15 degrees allowable
+    if (tx != 0.0f) { // use the limelight if it recognizes anything, and use the gyro otherwise
+      error = 1.0f * (tx / tx_max) * (31.65 / 180); // scaling error between -1 and 1, with 0 being dead on, and 1
+                                                     // being 180 degrees away
+    } else {
+      error = mappedAngle / 180.0f; // scaling error between -1 and 1, with 0 being dead on, and 1 being 180 degrees
+                                    // away
+    }
+    if (limelightAprilTagLastError == 0.0f) {
+      limelightAprilTagLastError = tx;
+    }
+    double error_derivative = error - limelightAprilTagLastError;
+    limelightAprilTagLastError = tx; // setting limelightlasterror for next loop
+
+    if (Math.abs(error) > acceptable_error_threshold) { // PID with a setpoint threshold
+      steering_adjust = (kP * error + kD * error_derivative);
+    }
+
+    final double xSpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(1),
+        Constants.Controllers.stickDeadband);
+    final double ySpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(0),
+        Constants.Controllers.stickDeadband);
+    swerve.drive(new Translation2d(xSpeed, ySpeed).times(Constants.Swerve.maxSpeed),
+        steering_adjust * Constants.Swerve.maxAngularVelocity, isFieldRel, false);
+
+    // System.out.println("raw angle: " + currentGyro + ", mapped angle: " +
+    // mappedAngle + ", april tag error: " + error);
+  }
+
 
   private void SwerveDrive(boolean isFieldRel) {
     double xSpeed = 0, ySpeed = 0, rot = 0;

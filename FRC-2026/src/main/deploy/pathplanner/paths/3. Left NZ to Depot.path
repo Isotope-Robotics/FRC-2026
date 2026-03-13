@@ -8,62 +8,46 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.165461356103265,
-        "y": 5.586495841676255
+        "x": 7.794120249105681,
+        "y": 5.0549308474947034
       },
       "isLocked": false,
       "linkedName": "LEFT NZ Intake Endpoint"
     },
     {
       "anchor": {
-        "x": 5.75,
-        "y": 5.5
+        "x": 5.6605155695921985,
+        "y": 7.43863710660461
       },
       "prevControl": {
-        "x": 6.0,
-        "y": 5.5
+        "x": 7.939811650622484,
+        "y": 7.43863710660461
       },
       "nextControl": {
-        "x": 4.3883025966706155,
-        "y": 5.5
+        "x": 1.2229607541940535,
+        "y": 7.4386371066046095
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.5,
-        "y": 5.5
+        "x": 0.755,
+        "y": 5.95
       },
       "prevControl": {
-        "x": 4.880169678162893,
-        "y": 5.5
-      },
-      "nextControl": {
-        "x": 3.220019455097876,
-        "y": 5.5
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 0.5456205420827387,
-        "y": 4.65
-      },
-      "prevControl": {
-        "x": 1.1791343107535444,
-        "y": 4.742492688586109
+        "x": 1.005,
+        "y": 5.95
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LEFT Hang"
+      "linkedName": "Depot"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 2.0,
-      "rotationDegrees": 90.0
+      "waypointRelativePos": 1.0618009868421054,
+      "rotationDegrees": 0.0
     }
   ],
   "constraintZones": [],
@@ -79,12 +63,12 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 1.196353463911535
   },
   "reversed": false,
   "folder": "LEFT",
   "idealStartingState": {
-    "velocity": 0.0,
+    "velocity": 0,
     "rotation": 88.80308850837524
   },
   "useDefaultConstraints": true
