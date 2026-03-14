@@ -2,10 +2,8 @@ package frc.robot.lib.util;
 
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
-
 import edu.wpi.first.math.util.Units;
 
-/* Contains values and required settings for MK4i swerve modules and Falcon 500s. */
 public class FalconSwerveConstants {
     public final double wheelDiameter;
     public final double wheelCircumference;
@@ -18,8 +16,9 @@ public class FalconSwerveConstants {
     public final InvertedValue angleMotorInvert;
     public final SensorDirectionValue cancoderInvert;
 
-    public FalconSwerveConstants(double wheelDiameter, double angleGearRatio, double driveGearRatio, double angleKP,
-            double angleKI, double angleKD, InvertedValue driveMotorInvert, InvertedValue angleMotorInvert,
+    public FalconSwerveConstants(double wheelDiameter, double angleGearRatio, double driveGearRatio,
+            double angleKP, double angleKI, double angleKD,
+            InvertedValue driveMotorInvert, InvertedValue angleMotorInvert,
             SensorDirectionValue cancoderInvert) {
         this.wheelDiameter = wheelDiameter;
         this.wheelCircumference = wheelDiameter * Math.PI;
@@ -34,49 +33,64 @@ public class FalconSwerveConstants {
     }
 
     public static final class SDS {
-        /** Swerve Drive Specialties - MK5n Module */
-        public static final class MK4i {
-            public static final FalconSwerveConstants Falcon500(double driveGearRatio) {
+        public static final class MK5n {
+            // MK5n steering gear ratio: 287:11 = 26.0909...
+            // MK5n bevel gears face OUTWARD (opposite of MK4i)
+            // This is why offsets need +90 correction vs MK4i procedure
+
+            public static FalconSwerveConstants Falcon500(double driveGearRatio) {
                 double wheelDiameter = Units.inchesToMeters(4.0);
-                double angleGearRatio = (287.0 / 11.0);
+                double angleGearRatio = (287.0 / 11.0); // 26.09:1
 
-                double angleKP = 100; //was 100
+                double angleKP = 100.0;
                 double angleKI = 0.0;
-                double angleKD = 0.0;
+                double angleKD = 0.5;
 
+                // CounterClockwise_Positive on drive, Clockwise_Positive on steer
+                // is correct for MK5n with Falcon 500
                 InvertedValue driveMotorInvert = InvertedValue.CounterClockwise_Positive;
                 InvertedValue angleMotorInvert = InvertedValue.Clockwise_Positive;
                 SensorDirectionValue cancoderInvert = SensorDirectionValue.CounterClockwise_Positive;
 
-                return new FalconSwerveConstants(wheelDiameter, angleGearRatio, driveGearRatio, angleKP, angleKI,
-                        angleKD, driveMotorInvert, angleMotorInvert, cancoderInvert);
+                return new FalconSwerveConstants(wheelDiameter, angleGearRatio, driveGearRatio,
+                        angleKP, angleKI, angleKD, driveMotorInvert, angleMotorInvert, cancoderInvert);
             }
 
-            public static final FalconSwerveConstants Falcon500Inverted(double driveGearRatio) {
+            public static FalconSwerveConstants Falcon500Inverted(double driveGearRatio) {
                 double wheelDiameter = Units.inchesToMeters(4.0);
                 double angleGearRatio = (287.0 / 11.0);
 
                 double angleKP = 100.0;
                 double angleKI = 0.0;
-                double angleKD = 0.0;
+                double angleKD = 0.5;
 
                 InvertedValue driveMotorInvert = InvertedValue.Clockwise_Positive;
                 InvertedValue angleMotorInvert = InvertedValue.Clockwise_Positive;
                 SensorDirectionValue cancoderInvert = SensorDirectionValue.CounterClockwise_Positive;
 
-                return new FalconSwerveConstants(wheelDiameter, angleGearRatio, driveGearRatio, angleKP, angleKI,
-                        angleKD, driveMotorInvert, angleMotorInvert, cancoderInvert);
+                return new FalconSwerveConstants(wheelDiameter, angleGearRatio, driveGearRatio,
+                        angleKP, angleKI, angleKD, driveMotorInvert, angleMotorInvert, cancoderInvert);
             }
 
             public static final class driveRatios {
-                /** SDS MK5n - (7.03 : 1) */
                 public static final double L1 = (7.03 / 1.0);
-                /** SDS MK5n - (6.03 : 1) */
                 public static final double L2 = (6.03 / 1.0);
-                /** SDS MK5n - (5.27 : 1) */
                 public static final double L3 = (5.27 / 1.0);
+            }
+        }
 
-                public static final double L69 = (5.902777778);
+        // Keep MK4i alias pointing to MK5n so existing Constants.java references compile
+        public static final class MK4i {
+            public static FalconSwerveConstants Falcon500(double driveGearRatio) {
+                return MK5n.Falcon500(driveGearRatio);
+            }
+            public static FalconSwerveConstants Falcon500Inverted(double driveGearRatio) {
+                return MK5n.Falcon500Inverted(driveGearRatio);
+            }
+            public static final class driveRatios {
+                public static final double L1 = MK5n.driveRatios.L1;
+                public static final double L2 = MK5n.driveRatios.L2;
+                public static final double L3 = MK5n.driveRatios.L3;
             }
         }
     }

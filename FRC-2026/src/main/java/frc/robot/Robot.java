@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix6.SignalLogger;
 
@@ -33,6 +35,8 @@ public class Robot extends TimedRobot {
 
   public boolean rightBumperWasPressed = false;
   public boolean leftBumperWasPressed = false;
+  public boolean AButtonWasPressed = false;
+  public boolean YButtonWasPressed = false;
 
   double limelightAprilTagLastError;
 
@@ -41,6 +45,8 @@ public class Robot extends TimedRobot {
   public Intake intake;
   public Shooter shooter;
   public Vision vision;
+
+   private final Field2d field = new Field2d();
   //public Climber climber;
 
   /**
@@ -56,6 +62,8 @@ public class Robot extends TimedRobot {
     vision = new Vision("limelight-april");
     // climber = Climber.getInstance();
     robotContainer = new RobotContainer();
+
+     SmartDashboard.putData("Field", field);
   }
 
   /**
@@ -70,8 +78,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
+
+     CommandScheduler.getInstance().run();
+
     swerve.swerveCurrents();
     RobotTelemetry();
+            SmartDashboard.putBoolean("EEEEEE", false);
+
   }
 
   /**
@@ -102,11 +116,11 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during autonomous. */
-  @Override
-  public void autonomousPeriodic() {
-    swerve.swerveOdometry.update(swerve.getGyroYaw(), swerve.getModulePositions());
+@Override
+public void autonomousPeriodic() {
+    // REMOVED: swerve.swerveOdometry.update(...) — Swerve.periodic() handles this
     RobotTelemetry();
-  }
+}
 
   /** This function is called once when teleop is enabled. */
   @Override
@@ -126,21 +140,13 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during operator control. */
-  @Override
-  public void teleopPeriodic() {
-    swerve.swerveOdometry.update(swerve.getPosGyroYaw(), swerve.getModulePositions());
-
-    System.out.println("AprilTag Vector: " + vision.getAprilTagVector());
-
+@Override
+public void teleopPeriodic() {
     Driver1Controls();
-
     SwerveDrive(false);
-
     Driver2Controls();
-
     RobotTelemetry();
-  }
-
+}
   /** This function is called once when the robot is disabled. */
   @Override
   public void disabledInit() {
@@ -263,6 +269,15 @@ public class Robot extends TimedRobot {
     }
     leftBumperWasPressed = Constants.Controllers.driver2.getLeftBumperButtonPressed();
 
+    
+    if (Constants.Controllers.driver2.getAButtonPressed()) {
+      intake.extend();
+    }
+
+    if (Constants.Controllers.driver2.getYButtonPressed()) {
+      intake.contract();
+    }
+
     // TODO: Add intake 
 
     // Constants.Controllers.driver2Handler.update();
@@ -325,16 +340,14 @@ public class Robot extends TimedRobot {
 
   private void SwerveDrive(boolean isFieldRel) {
     double xSpeed = 0, ySpeed = 0, rot = 0;
-    if (Constants.Controllers.driver1.getRawButton(1)) { // must hold down trigger on flight stick to drive
-      xSpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(0), Constants.Controllers.stickDeadband);
-      ySpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(1), Constants.Controllers.stickDeadband);
-      rot = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(3) /* we made it unnegatived */, Constants.Controllers.stickDeadband);
-      // System.out.println("Joystick data:\n * X Speed: " + xSpeed + "\n * Y Speed: " + ySpeed + "\n Rotational Speed: " + rot);
+    if (Constants.Controllers.driver1.getRawButton(1)) {
+        xSpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(0), Constants.Controllers.stickDeadband);
+        ySpeed = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(1), Constants.Controllers.stickDeadband);
+        rot = MathUtil.applyDeadband(Constants.Controllers.driver1.getRawAxis(3), Constants.Controllers.stickDeadband); // negated
     }
 
-    // Drive Function
     swerve.drive(new Translation2d(xSpeed, ySpeed).times(Constants.Swerve.maxSpeed),
         rot * Constants.Swerve.maxAngularVelocity, isFieldRel, false);
-    
   }
+
 }

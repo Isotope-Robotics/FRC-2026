@@ -68,13 +68,11 @@ public class Intake extends SubsystemBase {
     //Intake system elbow control
 
     public void contract() {
-        PositionVoltage request = new PositionVoltage(1/4);
-        elbowMotor.setControl(request);
+        elbowMotor.setPosition(0);
     }
 
     public void extend() {
-        PositionVoltage request = new PositionVoltage(1/12);
-        elbowMotor.setControl(request);
+        elbowMotor.setPosition(5/16);
     }
 
 
