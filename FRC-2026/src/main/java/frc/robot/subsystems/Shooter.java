@@ -47,7 +47,7 @@ public class Shooter extends SubsystemBase {
         shooterOutput.NeutralMode = Constants.Shooter.shooterMotorIdleMode;
         shooterMotor.getConfigurator().apply(shooterConfig);
 
-        shooter2Motor = new TalonFX(shooterMotorID);
+        shooter2Motor = new TalonFX(shooter2MotorID);
 
         TalonFXConfiguration shooter2Config = new TalonFXConfiguration();
         MotorOutputConfigs shooter2Output = shooterConfig.MotorOutput;
