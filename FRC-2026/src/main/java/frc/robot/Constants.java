@@ -190,11 +190,11 @@ public class Constants {
                 
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int shooterMotorID = 30;
-                public static final InvertedValue shooterMotorInvert = InvertedValue.Clockwise_Positive;
+                public static final InvertedValue shooterMotorInvert = InvertedValue.CounterClockwise_Positive;
                 public static final NeutralModeValue shooterMotorIdleMode = NeutralModeValue.Coast;
 
                 public static final int shooter2MotorID = 31;
-                public static final InvertedValue shooter2MotorInvert = InvertedValue.CounterClockwise_Positive;
+                public static final InvertedValue shooter2MotorInvert = InvertedValue.Clockwise_Positive;
                 public static final NeutralModeValue shooter2MotorIdleMode = NeutralModeValue.Coast;
                 public static final PIDController shooterPID = new PIDController(
                         0.1,
