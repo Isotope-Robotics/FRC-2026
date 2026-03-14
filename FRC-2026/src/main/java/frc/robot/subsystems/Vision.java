@@ -71,7 +71,7 @@ public class Vision {
     public Translation2d getAprilTagVector () {
         Translation2d aprilTagVector;
         if (tagVisibility.getDouble(0.0) > 0) {
-            aprilTagVector = getRobotPosTargetSpace().getTranslation();
+            aprilTagVector = getTargetPosRobotSpace().getTranslation();
         }
         else {
             aprilTagVector = new Translation2d();

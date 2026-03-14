@@ -243,38 +243,38 @@ public class Swerve extends SubsystemBase {
         }
     }
 
-    public boolean limelightNoteAim(boolean isFieldRel) {
-        boolean closeenough = false;
-        double tx = limelightNoteTable.getEntry("tx").getFloat(0);
-        double tx_max = 30.0f; // detemined empirically as the limelights field of view
-        double error = 0.0f;
-        double kP = 0.6f; // should be between 0 and 1, but can be greater than 1 to go even faster
-        double kD = 0.0f; // should be between 0 and 1
-        double steering_adjust = 0.0f;
-        double acceptable_error_threshold = 7.0f / 360.0f; // 15 degrees allowable
-        error = (tx / tx_max) * (31.65 / 180); // scaling error between -1 and 1, with 0 being dead on, and 1 being 180
-                                               // degrees away
-        if (limelightNoteLastError == 0.0f) {
-            limelightNoteLastError = tx;
-        }
-        double error_derivative = error - limelightNoteLastError;
-        limelightNoteLastError = tx; // setting limelightlasterror for next loop
+    // public boolean limelightNoteAim(boolean isFieldRel) {
+    //     boolean closeenough = false;
+    //     double tx = limelightNoteTable.getEntry("tx").getFloat(0);
+    //     double tx_max = 30.0f; // detemined empirically as the limelights field of view
+    //     double error = 0.0f;
+    //     double kP = 0.6f; // should be between 0 and 1, but can be greater than 1 to go even faster
+    //     double kD = 0.0f; // should be between 0 and 1
+    //     double steering_adjust = 0.0f;
+    //     double acceptable_error_threshold = 7.0f / 360.0f; // 15 degrees allowable
+    //     error = (tx / tx_max) * (31.65 / 180); // scaling error between -1 and 1, with 0 being dead on, and 1 being 180
+    //                                            // degrees away
+    //     if (limelightNoteLastError == 0.0f) {
+    //         limelightNoteLastError = tx;
+    //     }
+    //     double error_derivative = error - limelightNoteLastError;
+    //     limelightNoteLastError = tx; // setting limelightlasterror for next loop
 
-        if (Math.abs(error) > acceptable_error_threshold) { // PID with a setpoint threshold
-            steering_adjust = -1 * (kP * error + kD * error_derivative);
-            closeenough = false;
-        } else {
-            closeenough = true;
-        }
+    //     if (Math.abs(error) > acceptable_error_threshold) { // PID with a setpoint threshold
+    //         steering_adjust = -1 * (kP * error + kD * error_derivative);
+    //         closeenough = false;
+    //     } else {
+    //         closeenough = true;
+    //     }
 
-        final double xSpeed = 0;
-        final double ySpeed = 0;
-        drive(new Translation2d(xSpeed, ySpeed).times(Constants.Swerve.maxSpeed),
-                steering_adjust * Constants.Swerve.maxAngularVelocity, isFieldRel, false);
+    //     final double xSpeed = 0;
+    //     final double ySpeed = 0;
+    //     drive(new Translation2d(xSpeed, ySpeed).times(Constants.Swerve.maxSpeed),
+    //             steering_adjust * Constants.Swerve.maxAngularVelocity, isFieldRel, false);
 
-        // System.out.println("Note error: " + error);
-        return closeenough;
-    }
+    //     // System.out.println("Note error: " + error);
+    //     return closeenough;
+    // }
 
     public void forward(boolean isFieldRel) {
 
