@@ -175,11 +175,19 @@ public class Constants {
                 public static final int shooter2MotorID = 31;
                 public static final InvertedValue shooter2MotorInvert = InvertedValue.Clockwise_Positive;
                 public static final NeutralModeValue shooter2MotorIdleMode = NeutralModeValue.Coast;
-                public static final PIDController shooterPID = new PIDController(
-                        0.1,
-                        0,
-                        0
-                );
+                // Onboard velocity PID gains for shooter TalonFX motors (Phoenix 6 Slot 0)
+                // kV: volts per RPS — approx 12V / free_speed_RPS (tune this first)
+                // kP: volts per RPS of error (tune after kV)
+                public static final double shooterKP = 0.1;   // TODO: tune
+                public static final double shooterKI = 0.0;
+                public static final double shooterKD = 0.0;
+                public static final double shooterKV = 0.12;  // TODO: tune (12V / ~100 RPS free speed)
+                public static final double shooterKS = 0.0;   // TODO: tune (static friction volts)
+
+                // RPS setpoints (rotations per second)
+                public static final double closeShootRPS    = 6.0;
+                public static final double cornerShootRPS   = 6.2;
+                public static final double highShootRPS     = 7.5;
                 
                 public static final int hoodMotorID = 33;
                 public static final InvertedValue hoodMotorInvert = InvertedValue.Clockwise_Positive;

@@ -1,7 +1,9 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
@@ -19,6 +21,7 @@ public class Shooter extends SubsystemBase {
 
     public TalonFX shooterMotor;
     public TalonFX shooter2Motor;
+    private final VelocityVoltage m_velocityRequest = new VelocityVoltage(0).withSlot(0);
     public TalonFX hoodMotor;
     public SparkFlex feederMotor;
     public SparkFlex spindexerMotor;
@@ -45,14 +48,26 @@ public class Shooter extends SubsystemBase {
         MotorOutputConfigs shooterOutput = shooterConfig.MotorOutput;
         shooterOutput.Inverted = Constants.Shooter.shooterMotorInvert;
         shooterOutput.NeutralMode = Constants.Shooter.shooterMotorIdleMode;
+        Slot0Configs shooterSlot0 = shooterConfig.Slot0;
+        shooterSlot0.kP = Constants.Shooter.shooterKP;
+        shooterSlot0.kI = Constants.Shooter.shooterKI;
+        shooterSlot0.kD = Constants.Shooter.shooterKD;
+        shooterSlot0.kV = Constants.Shooter.shooterKV;
+        shooterSlot0.kS = Constants.Shooter.shooterKS;
         shooterMotor.getConfigurator().apply(shooterConfig);
 
         shooter2Motor = new TalonFX(shooter2MotorID);
 
         TalonFXConfiguration shooter2Config = new TalonFXConfiguration();
-        MotorOutputConfigs shooter2Output = shooterConfig.MotorOutput;
+        MotorOutputConfigs shooter2Output = shooter2Config.MotorOutput;
         shooter2Output.Inverted = Constants.Shooter.shooter2MotorInvert;
         shooter2Output.NeutralMode = Constants.Shooter.shooter2MotorIdleMode;
+        Slot0Configs shooter2Slot0 = shooter2Config.Slot0;
+        shooter2Slot0.kP = Constants.Shooter.shooterKP;
+        shooter2Slot0.kI = Constants.Shooter.shooterKI;
+        shooter2Slot0.kD = Constants.Shooter.shooterKD;
+        shooter2Slot0.kV = Constants.Shooter.shooterKV;
+        shooter2Slot0.kS = Constants.Shooter.shooterKS;
         shooter2Motor.getConfigurator().apply(shooter2Config);
 
         hoodMotor = new TalonFX(hoodMotorID);
@@ -108,18 +123,23 @@ public class Shooter extends SubsystemBase {
 
     }
 
-    public void startLaunchers(){
-        // Corner shot = 0.565
-        // Close shot = 0.300
-        shooterMotor.set(Constants.Shooter.highPower);
-        shooter2Motor.set(Constants.Shooter.highPower);
+    /** Set both shooter motors to a target RPS using onboard velocity PID. */
+    public void setLauncherRPS(double rps) {
+        shooterMotor.setControl(m_velocityRequest.withVelocity(rps));
+        shooter2Motor.setControl(m_velocityRequest.withVelocity(rps));
+    }
 
+    public double getShooterRPS() {
+        return shooterMotor.getVelocity().getValueAsDouble();
+    }
+
+    public void startLaunchers(){
+        setLauncherRPS(Constants.Shooter.highShootRPS);
     }
 
     public void stopLaunchers(){
         shooterMotor.set(0);
         shooter2Motor.set(0);
-
     }
         
     public void startFeeder(){
