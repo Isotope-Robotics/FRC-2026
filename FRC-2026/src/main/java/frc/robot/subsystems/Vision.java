@@ -21,11 +21,13 @@ public class Vision {
     private NetworkTableEntry globalRobotPose;
     private NetworkTableEntry aprilTagIDEntry;
     private NetworkTableEntry tagVisibility;
+    public NetworkTableEntry aprilTagX;
 
     public Vision (String tableID) {
         april = NetworkTableInstance.getDefault().getTable(tableID);
         robotPosTargetSpace = april.getEntry("botpose_targetspace");
         targetPosRobotSpace = april.getEntry("targetpose_robotspace");
+        aprilTagX = april.getEntry("tx");
         globalRobotPose = april.getEntry("botpose");
         aprilTagIDEntry = april.getEntry("tid");
         tagVisibility = april.getEntry("tv");
@@ -64,6 +66,17 @@ public class Vision {
 
     public Pose2d getGlobalTargetPose () throws NoSuchElementException {
         return getGlobalTargetPose((int)aprilTagIDEntry.getInteger(-1));
+    }
+
+    public Translation2d getAprilTagVector () {
+        Translation2d aprilTagVector;
+        if (tagVisibility.getDouble(0.0) > 0) {
+            aprilTagVector = getTargetPosRobotSpace().getTranslation();
+        }
+        else {
+            aprilTagVector = new Translation2d();
+        }
+        return aprilTagVector;
     }
 
     public Translation2d getShooterTargetVector () {

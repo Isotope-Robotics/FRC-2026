@@ -13,14 +13,16 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Lib.Util.FalconSwerveConstants;
-import frc.robot.Lib.Util.SwerveModuleConstants;
+import frc.robot.lib.input.HIDEventHandler;
+import frc.robot.lib.util.FalconSwerveConstants;
+import frc.robot.lib.util.SwerveModuleConstants;
 
 public class Constants {
 
         public static final class Controllers {
                 public static final Joystick driver1 = new Joystick(0);
                 public static final XboxController driver2 = new XboxController(1);
+                public static final HIDEventHandler driver2Handler = new HIDEventHandler(driver2);
                 public static final double stickDeadband = 0.3;
         }
 
@@ -48,10 +50,10 @@ public class Constants {
                 // Swerve Kinematics
                 // Modules numbered counter-clockwise starting from Front Left (Mod0)
                 public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
-                                new Translation2d(wheelBase / 2.0, trackWidth / 2.0),   // mod0 front left
-                                new Translation2d(-wheelBase / 2.0, trackWidth / 2.0),  // mod1 back left
-                                new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0), // mod2 back right
-                                new Translation2d(wheelBase / 2.0, -trackWidth / 2.0)); // mod3 front right
+                                new Translation2d(wheelBase / 2.0, trackWidth / 2.0),   // mod0 front left // MOD0 is front left good
+                                new Translation2d(-wheelBase / 2.0, trackWidth / 2.0),  // mod1 back left // MOD1 is back left good
+                                new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0), // mod2 back right // MOD2 is backk right
+                                new Translation2d(wheelBase / 2.0, -trackWidth / 2.0)); // mod3 front right // MOd3 Is front right good
 
                 // Gear Ratios (from TunerConstants kDriveGearRatio / kSteerGearRatio)
                 public static final double driveGearRatio = 5.2734375;
@@ -116,78 +118,58 @@ public class Constants {
                 // Modules numbered counter-clockwise starting at Front Left
                 // Encoder offsets converted from TunerConstants rotations to degrees (* 360)
 
-                /* Front Left Module - Module 0 */
+
+                /* Front Left Module - Module 0 — MK5n Layout A */
                 public static final class Mod0 {
-                        public static final int driveMotorID = 0;
-                        public static final int angleMotorID = 4;
-                        public static final int canCoderID = 54;
-                        // -0.459716796875 rotations * 360 = -165.50 degrees
-                        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-165.50);
-                        public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID,
-                                        angleMotorID,
-                                        canCoderID, angleOffset);
+                public static final int driveMotorID = 0;
+                public static final int angleMotorID = 4;
+                public static final int canCoderID = 54;
+                public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-6.240234);
+                public static final SwerveModuleConstants constants = new SwerveModuleConstants(
+                        driveMotorID, angleMotorID, canCoderID, angleOffset,
+                        InvertedValue.CounterClockwise_Positive); // Layout A
                 }
 
-                /* Back Left Module - Module 1 */
+                /* Back Left Module - Module 1 — MK5n Layout B */
                 public static final class Mod1 {
-                        public static final int driveMotorID = 1;
-                        public static final int angleMotorID = 5;
-                        public static final int canCoderID = 55;
-                        // -0.245849609375 rotations * 360 = -88.51 degrees
-                        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-88.51);
-                        public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID,
-                                        angleMotorID,
-                                        canCoderID, angleOffset);
+                public static final int driveMotorID = 1;
+                public static final int angleMotorID = 5;
+                public static final int canCoderID = 55;
+                public static final Rotation2d angleOffset = Rotation2d.fromDegrees(95.185547);
+                public static final SwerveModuleConstants constants = new SwerveModuleConstants(
+                        driveMotorID, angleMotorID, canCoderID, angleOffset,
+                        InvertedValue.CounterClockwise_Positive); // Layout B — mirrored
                 }
 
-                /* Back Right Module - Module 2 */
+                /* Back Right Module - Module 2 — MK5n Layout A */
                 public static final class Mod2 {
-                        public static final int driveMotorID = 2;
-                        public static final int angleMotorID = 6;
-                        public static final int canCoderID = 56;
-                        // 0.10888671875 rotations * 360 = 39.20 degrees
-                        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(39.20);
-                        public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID,
-                                        angleMotorID,
-                                        canCoderID, angleOffset);
+                public static final int driveMotorID = 2;
+                public static final int angleMotorID = 6;
+                public static final int canCoderID = 56;
+                public static final Rotation2d angleOffset = Rotation2d.fromDegrees(130.166016);
+                public static final SwerveModuleConstants constants = new SwerveModuleConstants(
+                        driveMotorID, angleMotorID, canCoderID, angleOffset,
+                        InvertedValue.Clockwise_Positive); // Layout A
                 }
 
-                /* Front Right Module - Module 3 */
+                /* Front Right Module - Module 3 — MK5n Layout B */
                 public static final class Mod3 {
-                        public static final int driveMotorID = 3;
-                        public static final int angleMotorID = 7;
-                        public static final int canCoderID = 57;
-                        // 0.06396484375 rotations * 360 = 23.03 degrees
-                        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(23.03);
-                        public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID,
-                                        angleMotorID,
-                                        canCoderID, angleOffset);
+                public static final int driveMotorID = 3;
+                public static final int angleMotorID = 7;
+                public static final int canCoderID = 57;
+                public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-142.822266);
+                public static final SwerveModuleConstants constants = new SwerveModuleConstants(
+                        driveMotorID, angleMotorID, canCoderID, angleOffset,
+                        InvertedValue.Clockwise_Positive); // Layout B — mirrored
                 }
 
-                // For Pathplanner Config - DO NOT USE ANYWHERE EXCEPT FOR THE CONFIG IN AUTO!!
-                public static final Translation2d front_offset = new Translation2d(wheelBase / 2.0, trackWidth / 2.0);
-
-                public static final class AutoConstants {
-                        public static final double kMaxSpeedMetersPerSecond = 3;
-                        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-                        public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
-                        public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
-
-                        public static final double kPXController = 1;
-                        public static final double kPYController = 1;
-                        public static final double kPThetaController = 1;
-
-                        // Constraint for the motion profilied robot angle controller
-                        public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(
-                                        kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
-                }
-
-        }    
-
+        }
+        
         public static final class Shooter {
+                
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int shooterMotorID = 30;
-                public static final InvertedValue shooterMotorInvert = InvertedValue.CounterClockwise_Positive;
+                public static final InvertedValue shooterMotorInvert = InvertedValue.Clockwise_Positive;
                 public static final NeutralModeValue shooterMotorIdleMode = NeutralModeValue.Coast;
 
                 public static final int shooter2MotorID = 31;
@@ -199,9 +181,13 @@ public class Constants {
                         0
                 );
                 
-                public static final int hoodMotorID = 32;
+                public static final int hoodMotorID = 33;
                 public static final InvertedValue hoodMotorInvert = InvertedValue.Clockwise_Positive;
                 public static final NeutralModeValue hoodMotorIdleMode = NeutralModeValue.Brake;
+
+                public static final int turretMotorID = 32;
+                public static final InvertedValue turretMotorInvert = InvertedValue.Clockwise_Positive;
+                public static final NeutralModeValue turretMotorIdleMode = NeutralModeValue.Brake;
 
                 public static final int feederMotorID = 21;
                 public static final boolean feederMotorInvert = false;
@@ -218,8 +204,14 @@ public class Constants {
                         0
                 );
 
-                public static final double maxPower = 0.450;
+                public static final double lowPower = 0.300;
+                public static final double mediumPower = 0.450;
+                public static final double highPower = 0.600;
+                public static final double maxPower = 0.750;
+                public static final double concussionPower = 1.000;
+
                 public static final double hubWidth = 47.0;
+
        }
 
         public static final class Vision {
@@ -229,10 +221,10 @@ public class Constants {
         public static final class Intake {
                 // TODO: REMOVE DUMMY CONSTANTS
                 public static final int intakeMotorID = 10;
-                public static final boolean intakeMotorInvert = false;
+                public static final boolean intakeMotorInvert = true;
                 public static final IdleMode intakeMotorIdleMode = IdleMode.kBrake;
                 public static final int elbowMotorID = 11;
-                public static final double intakeVelocity = 1.000;
+                public static final double intakeVelocity = 0.200;
         }
         public static final class Climber {
                 public static final int rightClimberMotorID = 40;

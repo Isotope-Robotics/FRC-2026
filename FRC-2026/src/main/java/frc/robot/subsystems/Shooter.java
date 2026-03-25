@@ -22,6 +22,7 @@ public class Shooter extends SubsystemBase {
     public TalonFX hoodMotor;
     public SparkFlex feederMotor;
     public SparkFlex spindexerMotor;
+    public TalonFX turretMotor;
     public RelativeEncoder spindexerEncoder;
     // Proximity sensor
     // Initialize a DigitalInput on DIO port 0
@@ -36,7 +37,7 @@ public class Shooter extends SubsystemBase {
 
     public ShooterState state = ShooterState.OFF;
 
-    private Shooter (int shooterMotorID, int shooter2MotorID, int hoodMotorID, int feederMotorID, int spindexerMotorID) {
+    private Shooter (int shooterMotorID, int shooter2MotorID, int hoodMotorID, int feederMotorID, int spindexerMotorID, int turretMotorID) {
 
         shooterMotor = new TalonFX(shooterMotorID);
 
@@ -46,7 +47,7 @@ public class Shooter extends SubsystemBase {
         shooterOutput.NeutralMode = Constants.Shooter.shooterMotorIdleMode;
         shooterMotor.getConfigurator().apply(shooterConfig);
 
-        shooter2Motor = new TalonFX(shooterMotorID);
+        shooter2Motor = new TalonFX(shooter2MotorID);
 
         TalonFXConfiguration shooter2Config = new TalonFXConfiguration();
         MotorOutputConfigs shooter2Output = shooterConfig.MotorOutput;
@@ -77,15 +78,41 @@ public class Shooter extends SubsystemBase {
         spindexerConfig.inverted(Constants.Shooter.spindexerMotorInvert);
         spindexerMotor.configure(spindexerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
+        turretMotor = new TalonFX(turretMotorID);
+
+        TalonFXConfiguration turretConfig = new TalonFXConfiguration();
+        MotorOutputConfigs turretOutput = hoodConfig.MotorOutput;
+        turretOutput.Inverted = Constants.Shooter.turretMotorInvert;
+        turretOutput.NeutralMode = Constants.Shooter.turretMotorIdleMode;
+        turretMotor.getConfigurator().apply(turretConfig);
+
         proxSensor = new DigitalInput(0);
         
+    }
+
+    public void turretClockwise () {
+        
+        turretMotor.set(turretMotor.getPosition().getValueAsDouble() + 1.0/40.0);
+
+    }
+
+    public void turretCounterclockwise () {
+
+        turretMotor.set(turretMotor.getPosition().getValueAsDouble() - 1.0/40.0);
+
+    }
+
+    public void turretStop () {
+        
+        turretMotor.set(0);
+
     }
 
     public void startLaunchers(){
         // Corner shot = 0.565
         // Close shot = 0.300
-        shooterMotor.set(-Constants.Shooter.maxPower);
-        shooter2Motor.set(-Constants.Shooter.maxPower);
+        shooterMotor.set(Constants.Shooter.highPower);
+        shooter2Motor.set(Constants.Shooter.highPower);
 
     }
 
@@ -129,7 +156,7 @@ public class Shooter extends SubsystemBase {
 
     public static Shooter getInstance () {
         if (m_Instance == null)
-            m_Instance = new Shooter(Constants.Shooter.shooterMotorID, Constants.Shooter.shooter2MotorID, Constants.Shooter.hoodMotorID, Constants.Shooter.feederMotorID, Constants.Shooter.spindexerMotorID);
+            m_Instance = new Shooter(Constants.Shooter.shooterMotorID, Constants.Shooter.shooter2MotorID, Constants.Shooter.hoodMotorID, Constants.Shooter.feederMotorID, Constants.Shooter.spindexerMotorID, Constants.Shooter.turretMotorID);
         return m_Instance;
     }
 
