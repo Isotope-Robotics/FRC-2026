@@ -7,12 +7,18 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
 
     public TalonFX rightClimberMotor, leftClimberMotor;
+    public DoubleSolenoid climbSolenoid;
+    public Compressor compressor;
 
     private static Climber m_Instance;
 
@@ -43,6 +49,15 @@ public class Climber extends SubsystemBase {
 
             rightClimberMotor.getConfigurator().apply(config);
             leftClimberMotor.getConfigurator().apply(config);
+
+        climbSolenoid = new DoubleSolenoid(
+            PneumaticsModuleType.REVPH,
+            Constants.Climber.solenoidForwardChannel,
+            Constants.Climber.solenoidReverseChannel
+        );
+
+        compressor = new Compressor(PneumaticsModuleType.REVPH);
+        compressor.enableDigital();
     }
        
     public void climbUp() {
@@ -55,6 +70,14 @@ public class Climber extends SubsystemBase {
         positionRequest.Position = Constants.Climber.CLIMB_DOWN_POSITION;
         rightClimberMotor.setControl(positionRequest);
         leftClimberMotor.setControl(positionRequest);
+    }
+
+    public void extendSolenoid() {
+        climbSolenoid.set(Value.kForward);
+    }
+
+    public void retractSolenoid() {
+        climbSolenoid.set(Value.kReverse);
     }
 
     public static Climber getInstance () {

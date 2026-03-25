@@ -250,5 +250,9 @@ public class Constants {
                 // Positions (rotations)
                 public static final double CLIMB_UP_POSITION = 25.0;
                 public static final double CLIMB_DOWN_POSITION = 0.0;
+
+                // Solenoid ports on REV Pneumatics Hub
+                public static final int solenoidForwardChannel = 1;
+                public static final int solenoidReverseChannel = 2;
         }
 }
